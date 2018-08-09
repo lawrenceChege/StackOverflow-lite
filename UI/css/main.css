@@ -1,4 +1,6 @@
 @import 'mediaqueries.css';
+@import 'reset.css';
+@import 'buttons.css';
 .nav-bar{
     background-color: #171915f5;
     display: flex;
@@ -8,8 +10,13 @@
     position:fixed;
     z-index: 99999;
     width:100%;
-    height: 40px;
+    height: 50px;
+    align-items: center;
 }
+.nav-bar input[type=text] {
+    border: none;
+    
+  }
 .nav-bar-right{
     margin-left: auto;
 
@@ -21,6 +28,7 @@
     background-color: #8E8C8D;
 }
 .nav-bar-items{
+    background-color: #171915f5;
     display: flex;
 }
 .nav-bar-toggle{
@@ -34,9 +42,41 @@
     height: auto;
     z-index: -1;
     position: fixed;
+    vertical-align: middle;
+}
+* {
+    box-sizing: border-box;
 }
 .container{
     display: flex;
     position: relative;
-    
+    margin:0 auto;
+
+}
+.overlay {
+    position:absolute;
+    background: rgba(0,0,0,0.5);
+    color:#f1f1f1;
+    width: 100%;
+    padding: 80px;
+    min-height: 600px;
+    text-align: center;
+}
+.overlay>h1 {
+    font: 5em sans-serif;
+}
+.overlay>p{
+    font:  3em sans-serif;
+}
+.button-login {
+    background-color:rgb(2, 97, 2);
+}
+.button-signup {
+    background-color:rgb(4, 87, 4);
+}
+.button-login a{
+    color: #FFFFFF;
+}
+.button-signup a{
+    color: #FFFFFF;
 }
