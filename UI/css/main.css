@@ -145,7 +145,7 @@ body{
 
 }
 .editprofile{
-    display: none;
+    display: block;
     margin-left: auto;
     background-color: #070000;
     color: #FFFFFF;
