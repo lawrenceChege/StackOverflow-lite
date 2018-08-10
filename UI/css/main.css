@@ -61,17 +61,20 @@ body{
 
 }
 .post-items{
-    font: 2em sans-serif;
+    font: 1em sans-serif;
     border: none;
     margin: 10px;
     padding: 16px;
+    display: inline;
     
 }
 .post-items a{
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     color: #2196F3;
-    display: block;
+}
+.post-items .votes .accepted-answers .views{
+    display: inline;
 }
 .signup-box{
     display: flex;
@@ -121,52 +124,38 @@ body{
     text-align: center;
     padding-top: 50px;
     font: 1em sans-serif;
+    position: fixed;
 }
 .title {
     color: grey;
     font-size: 18px;
 }
-.profile-card{
-    display:flex;
-    flex-flow: column;
-    flex-wrap: wrap;
-}
-.profile-card div{
-    margin-top: 30px;
-}
-.profile-details{
+.questions{
     flex-grow: 1;
+    width:70%;
+    margin-top: 50px;
+    margin-left:70px;
 }
-.profile-details img{
-    margin-bottom: 10px;
+
+.question-summary p{
+    font-size:17px;
+    font-weight:300;
+    color:#6a737c;
+    margin-bottom:4px;
+
 }
-.profile-details h1{
-    margin-top: 10px;
-    margin-bottom: 10px;
+.editprofile{
+    display: none;
+    margin-left: auto;
+    background-color: #070000;
+    color: #FFFFFF;
 }
-.profile-details p{
-    margin-top: 20px;
-    margin-bottom: 20px;
+.ans-by{
+    display: inline;
 }
-.profile-details a{
-    text-decoration: none;
-    color: #0f0f0f;
+.last-view{
+    display: inline;
 }
-.profile-activity{
-    flex-grow:1;
-    background-color: #171915f5;
-    display: grid;
-    font-family: sans-serif;
-    color:#FFFFFF;
-}
-.profile-activity a{
-    text-decoration: none;
-    color: #faf6f6;
-    padding: 10px;
-}
-.profile-activity a:hover{
-    color:aqua;
-}
-.profile-activity div{
-    border-bottom: 1px solid white;
+.qn-time{
+    display: inline;
 }
