@@ -1,0 +1,33 @@
+.wrapper{
+    display: flex;
+    min-height: 600px;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    background-color: DodgerBlue;
+}
+.primary {
+    display: flex;
+    background-color: #f1f1f1;
+    flex-grow:4;
+    flex-flow: row;
+    margin: 50px 30px 10px 30px;
+    min-height: 600px;
+}
+.primary-right{
+    background-color: #c7c715;
+    flex-grow:2;
+    width: 50%;
+    margin: 10px;
+}
+.primary-left{
+    background-color: #d31111;
+    flex-grow:2;
+    width:50%;
+    margin: 10px;
+}
+.secondary {
+    background-color: #f1f1f1;
+    flex-grow:1;
+    width: 5%;
+   
+}

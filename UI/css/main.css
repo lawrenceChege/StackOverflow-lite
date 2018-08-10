@@ -1,6 +1,7 @@
 @import 'mediaqueries.css';
 @import 'reset.css';
 @import 'buttons.css';
+@import 'home.css';
 .nav-bar{
     background-color: #171915f5;
     display: flex;
@@ -78,32 +79,4 @@
 }
 .button-signup a{
     color: #FFFFFF;
-}
-.wrapper{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-.primary{
-    display: grid;
-    height: 600px;
-    width:70%;
-    grid-template-columns: repeat(2, 1fr); 
-    grid-auto-rows: 200px;
-}
-.primary-right{
-    grid-column-start: 1; 
-    grid-column-end: 4; 
-    grid-row-start: 1; 
-    grid-row-end: 4;
-
-}
-.primary-left{
-    grid-column-start: 1; 
-    grid-row-start: 3; 
-    grid-row-end: 5; 
-
-}
-.secondary {
-    display: flex;
-    width: 30%;
 }
