@@ -4,6 +4,7 @@
 @import 'home.css';
 @import 'navbar.css';
 @import 'forms.css';
+@import 'profile.css';
 body{
     margin: 0;
     padding: 0;
@@ -54,18 +55,26 @@ body{
 .posts{
     text-align: center;
 }
-.post-items{
+.posts h2{
     font: 2em sans-serif;
+    border-bottom: 1px solid black;
+
+}
+.post-items{
+    font: 1em sans-serif;
     border: none;
     margin: 10px;
     padding: 16px;
+    display: inline;
     
 }
 .post-items a{
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     color: #2196F3;
-    display: block;
+}
+.post-items .votes .accepted-answers .views{
+    display: inline;
 }
 .signup-box{
     display: flex;
@@ -107,4 +116,46 @@ body{
     width: 50%;
     margin-bottom: 5px;
     border-bottom: 2px solid #053a15;
+}
+.profile{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin-left: auto;
+    text-align: center;
+    padding-top: 50px;
+    font: 1em sans-serif;
+    position: fixed;
+}
+.title {
+    color: grey;
+    font-size: 18px;
+}
+.questions{
+    flex-grow: 1;
+    width:70%;
+    margin-top: 50px;
+    margin-left:70px;
+}
+
+.question-summary p{
+    font-size:17px;
+    font-weight:300;
+    color:#6a737c;
+    margin-bottom:4px;
+
+}
+.editprofile{
+    display: none;
+    margin-left: auto;
+    background-color: #070000;
+    color: #FFFFFF;
+}
+.ans-by{
+    display: inline;
+}
+.last-view{
+    display: inline;
+}
+.qn-time{
+    display: inline;
 }

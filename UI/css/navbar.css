@@ -34,6 +34,11 @@
 .nav-bar-brand{
     padding: 10px;
 }
+.nav-bar-brand a{
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
 .nav-bar-link a{
     text-decoration: none;
     color: #FFFFFF;
