@@ -55,6 +55,11 @@ body{
 .posts{
     text-align: center;
 }
+.posts h2{
+    font: 2em sans-serif;
+    border-bottom: 1px solid black;
+
+}
 .post-items{
     font: 2em sans-serif;
     border: none;
@@ -108,4 +113,60 @@ body{
     width: 50%;
     margin-bottom: 5px;
     border-bottom: 2px solid #053a15;
+}
+.profile{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin-left: auto;
+    text-align: center;
+    padding-top: 50px;
+    font: 1em sans-serif;
+}
+.title {
+    color: grey;
+    font-size: 18px;
+}
+.profile-card{
+    display:flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+}
+.profile-card div{
+    margin-top: 30px;
+}
+.profile-details{
+    flex-grow: 1;
+}
+.profile-details img{
+    margin-bottom: 10px;
+}
+.profile-details h1{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.profile-details p{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.profile-details a{
+    text-decoration: none;
+    color: #0f0f0f;
+}
+.profile-activity{
+    flex-grow:1;
+    background-color: #171915f5;
+    display: grid;
+    font-family: sans-serif;
+    color:#FFFFFF;
+}
+.profile-activity a{
+    text-decoration: none;
+    color: #faf6f6;
+    padding: 10px;
+}
+.profile-activity a:hover{
+    color:aqua;
+}
+.profile-activity div{
+    border-bottom: 1px solid white;
 }
