@@ -1,0 +1,161 @@
+@import 'mediaqueries.css';
+@import 'reset.css';
+@import 'buttons.css';
+@import 'home.css';
+@import 'navbar.css';
+@import 'forms.css';
+@import 'profile.css';
+body{
+    margin: 0;
+    padding: 0;
+    font: 1em sans-serif;
+}
+.index-image{
+    width: 100%;
+    height: auto;
+    z-index: -1;
+    position: fixed;
+    vertical-align: middle;
+}
+* {
+    box-sizing: border-box;
+}
+.container{
+    display: grid;
+    position: relative;
+    margin:0 auto;
+}
+.overlay {
+    position:absolute;
+    background: rgba(0,0,0,0.5);
+    color:#f1f1f1;
+    width: 100%;
+    padding: 80px;
+    min-height: 600px;
+    text-align: center;
+}
+.overlay>h1 {
+    font: 5em sans-serif;
+}
+.overlay>p{
+    font:  3em sans-serif;
+}
+.button-login {
+    background-color:rgb(2, 97, 2);
+}
+.button-signup {
+    background-color:rgb(4, 87, 4);
+}
+.button-login a{
+    color: #FFFFFF;
+}
+.button-signup a{
+    color: #FFFFFF;
+}
+.posts{
+    text-align: center;
+}
+.posts h2{
+    font: 2em sans-serif;
+    border-bottom: 1px solid black;
+
+}
+.post-items{
+    font: 1em sans-serif;
+    border: none;
+    margin: 10px;
+    padding: 16px;
+    display: inline;
+    
+}
+.post-items a{
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    color: #2196F3;
+}
+.post-items .votes .accepted-answers .views{
+    display: inline;
+}
+.signup-box{
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+    padding: 20px 30px;
+}
+.signup-box div{
+    flex-grow: 1;
+}
+.input-box input:hover{
+    background-color: rgb(167, 240, 184);
+}
+.signup-box h1{
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 6px solid #053a15;
+    margin-bottom: 10px;
+    padding: 0 0 12px 0;
+}
+.signup-box p{
+    text-decoration: dotted;
+}
+.input-box{
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 8px 0;
+    
+}
+.input-box p{
+    font-weight:bold;
+    width: 50%;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #053a15;
+}
+.profile{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin-left: auto;
+    text-align: center;
+    padding-top: 50px;
+    font: 1em sans-serif;
+    position: fixed;
+}
+.title {
+    color: grey;
+    font-size: 18px;
+}
+.questions{
+    flex-grow: 1;
+    width:70%;
+    margin-top: 50px;
+    margin-left:70px;
+}
+
+.question-summary p{
+    font-size:17px;
+    font-weight:300;
+    color:#6a737c;
+    margin-bottom:4px;
+
+}
+.editprofile{
+    display: none;
+    margin-left: auto;
+    background-color: #070000;
+    color: #FFFFFF;
+}
+.ans-by{
+    display: inline;
+}
+.last-view{
+    display: inline;
+}
+.qn-time{
+    display: inline;
+}

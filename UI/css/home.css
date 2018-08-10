@@ -1,0 +1,52 @@
+.wrapper{
+    display: flex;
+    min-height: 600px;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.primary {
+    display: flex;
+    flex-grow:4;
+    margin: 50px 30px 10px 30px;
+    min-height: 700px;
+}
+.primary-right{
+    flex-grow:2;
+    width: 50%;
+    margin: 10px;
+}
+.primary-left{
+    flex-grow:2;
+    width:50%;
+    margin: 10px;
+}
+.secondary {
+    flex-grow:1;
+    width: 13%;
+    background-color: #f1f1f1f1;
+    
+}
+
+.sidenav {
+    position: fixed;
+    z-index: 1;
+    top: 70px;
+    left: 5px;
+    overflow-x: hidden;
+    padding-bottom: 20px;
+    width: 14%;
+    
+    
+}
+
+.sidenav a {
+    padding: 6px 8px 20px 16px;
+    text-decoration: none;
+    color: rgb(4, 17, 27);
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #064579;
+}
+
