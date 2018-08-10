@@ -1,0 +1,17 @@
+form {
+    border: 1px solid black;
+    padding: 20px 30px;
+    font: 1em sans-serif;
+}
+form>input{
+    border: none;
+    border-bottom: 0.2px solid ;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    width: 100%;
+    margin: 10px;
+}
+form div:hover{
+    background-color: rgba(0, 0, 0, 0.1)
+}
