@@ -80,3 +80,19 @@
 .button-signup a{
     color: #FFFFFF;
 }
+.posts{
+    text-align: center;
+}
+.post-items{
+    font: 2em sans-serif;
+    border: none;
+    margin: 10px;
+    padding: 16px;
+    
+}
+.post-items a{
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    color: #2196F3;
+    display: block;
+}
