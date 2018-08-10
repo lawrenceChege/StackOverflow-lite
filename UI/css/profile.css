@@ -1,0 +1,27 @@
+.votes{
+    padding:0;
+    margin-bottom:8px;
+    text-align:center;
+    font-size:17px;
+    font-weight:300;
+}
+.views{
+    padding-top:4px;
+    text-align:center;
+    font-size:17px;
+    font-weight:300;
+}
+.views strong{
+    display:block
+}
+.accepted-answers{
+    padding-top:10px;
+    font-size:17px;
+    font-weight:300;
+}
+.mini-counts{
+    font-size:17px;
+    font-weight:300;
+    color:#6a737c;
+    margin-bottom:4px
+}

@@ -4,6 +4,7 @@
 @import 'home.css';
 @import 'navbar.css';
 @import 'forms.css';
+@import 'profile.css';
 body{
     margin: 0;
     padding: 0;
