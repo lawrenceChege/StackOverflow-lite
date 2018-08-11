@@ -9,6 +9,7 @@
     width:100%;
     height: 50px;
     align-items: center;
+    margin-top: 3px;
 }
 .nav-bar input[type=text] {
     border: none;

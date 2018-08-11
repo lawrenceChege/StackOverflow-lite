@@ -4,12 +4,15 @@
     text-align:center;
     font-size:17px;
     font-weight:300;
+    float: right;
 }
 .views{
     padding-top:4px;
     text-align:center;
     font-size:17px;
     font-weight:300;
+    margin-right: auto;
+    margin-left: auto;
 }
 .views strong{
     display:block
@@ -18,6 +21,7 @@
     padding-top:10px;
     font-size:17px;
     font-weight:300;
+    float: left;
 }
 .mini-counts{
     font-size:17px;
