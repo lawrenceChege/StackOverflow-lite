@@ -52,18 +52,23 @@
                 <a href="Users.html">
                     <i class="fa fa-user"> User </i>
                 </a>
-                <a href="question.html">
+                <a href="#" onclick="myFunction('Demo1')" >
                     <i class="fa fa-question"> Questions </i>
                 </a>
+                <div id="demoAcc" class="hide">
+                        <a href="#mostanswerd" ><h2>most-answered</h2></a>
+                        <a href="#recent" ><h2>Recent questions</h2></a>
+                        <a href="question.html">New question</a>
+                      </div>
                 <a href="contacts.html">
                     <i class="fa fa-phone">contacts</i>
                 </a>
             </div>
         </nav>
         <div class="primary">
-            <div class="primary-left">
+            <div id="recent">
                 <div class="posts">
-                    <h2>Recent questions</h2>
+                    <h2 class="header">Recent questions</h2>
                     <div class="post-items">
                         <div class="question-summary">
                             <h3>
@@ -306,9 +311,9 @@
                     </div>
                 </div>
             </div>
-            <div class="primary-right">
+            <div id="mostanswerd">
                 <div class="posts">
-                    <h2>most-answered</h2>
+                    <h2 class="header">most-answered</h2>
                     <div class="post-items">
                         <div class="question-summary">
                             <h3>

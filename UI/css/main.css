@@ -52,8 +52,29 @@ body{
 .button-signup a{
     color: #FFFFFF;
 }
+h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+    font-size: 18px;
+}
 .posts{
-    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    border: 1px solid #00000020;
+    border-bottom: none;
+}
+.header{
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 15px;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 .posts h2{
     font: 2em sans-serif;
@@ -61,11 +82,8 @@ body{
 
 }
 .post-items{
-    font: 1em sans-serif;
-    border: none;
-    margin: 10px;
-    padding: 16px;
-    display: inline;
+    flex: 1 1 auto;
+    padding: 1rem;
     
 }
 .post-items a{
@@ -142,6 +160,8 @@ body{
     font-weight:300;
     color:#6a737c;
     margin-bottom:4px;
+    flex: 1 1 auto;
+    padding: 1rem;
 
 }
 .editprofile{
@@ -153,11 +173,45 @@ body{
     border: none;
 }
 .ans-by{
-    display: inline;
+    font-size: 10px;
+    margin-top: 10px;
 }
 .last-view{
-    display: inline;
+    font-size: 10px;
+    float: right;
 }
 .qn-time{
-    display: inline;
+    font-size: 10px;
+    float: left;
+}
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+.green{
+    background-color: #053a15;
+}
+.primary ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+}
+ul li:nth-child(odd) {
+    background: #f9f9f9;
+}
+ul li:hover {
+    background: #ddd;
+}
+.newqn{
+    padding-top: 50px;
+    padding-right: 10px;
+    padding-bottom: auto;
+    padding-left: auto;
+    position: fixed;
+    z-index: 8273;
 }
