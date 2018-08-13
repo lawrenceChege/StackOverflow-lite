@@ -214,4 +214,6 @@ ul li:hover {
     padding-left: auto;
     position: fixed;
     z-index: 8273;
+    width:20%;
+    background-color: #f9f9f9;
 }
