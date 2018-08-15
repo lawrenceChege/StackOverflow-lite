@@ -1,0 +1,25 @@
+language: python
+
+python:
+  - 2.7
+  - 3.5
+  - 3.6
+
+install:
+  - pip install -r requirements/dev.txt
+  - pip install codecov
+
+script:
+  - python -m unittest discover
+  - behave
+  - coverage erase
+  - coverage run pytest-rednose && coverage html
+  - pylint --output-format=text webapp.py
+
+after_success:
+  - codecov
+
+deploy:
+  - provider: heroku
+    api_key: secure:d42b5ce7-5a91-4709-b5c8-007fdbb20928
+    app: stackoverflow-liter
