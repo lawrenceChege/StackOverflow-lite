@@ -1,19 +1,18 @@
 """ This is the base class for all the tests"""
 from unittest import TestCase
-from flask import Flask
 import unittest
-import json
+from flask import Flask
+
 
 app = Flask(__name__)
 
 class BaseTestCase(TestCase):
     """ set up configurations for the test environment"""
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls, self):
         """set up app configuration"""
         self.app = app.test_client()
         self.app.testing = True
-        
         self.users = {
             {
                 "id":1,
@@ -39,7 +38,7 @@ class BaseTestCase(TestCase):
             "email": "mbuchez9@gmail.com",
             "password": "maembembili"
         }
-        self.person_no_username ={
+        self.person_no_username = {
             "email": "mbuchez8@gmail.com",
             "password": "maembembili"
         }
@@ -56,7 +55,7 @@ class BaseTestCase(TestCase):
             "email": "mbuchez.com",
             "password": "maembembili"
         }
-        self.person_existing_user ={
+        self.person_existing_user = {
             "username": "test",
             "email": "test@gmail.com",
             "password": "password"
@@ -90,7 +89,6 @@ class BaseTestCase(TestCase):
             "downvotes":1,
             "answers":0,
         }
-        
         self.questions = {
             {
                 "id": 1,
@@ -137,7 +135,7 @@ class BaseTestCase(TestCase):
                 "answers":0,
             }
         }
-        self.question_no_title= {
+        self.question_no_title = {
             "id": 1,
             "user_id":1,
             "Title": "",
@@ -148,7 +146,7 @@ class BaseTestCase(TestCase):
             "downvotes":1,
             "answers":0,
         }
-        self.question_no_body ={
+        self.question_no_body = {
             "id": 1,
             "user_id":1,
             "Title": "how are you doing?",
@@ -157,10 +155,9 @@ class BaseTestCase(TestCase):
             "date_modified":12/3/18,
             "upvotes":3,
             "downvotes":1,
-            "answers":0,
-            
+            "answers":0,   
         }
-        self.question_invalid_title={
+        self.question_invalid_title = {
             "id": 1,
             "user_id":1,
             "Title": 1234,
@@ -221,7 +218,7 @@ class BaseTestCase(TestCase):
                 "status": "Pending"
             }
         }
-        self.answer_no_body ={
+        self.answer_no_body = {
             "id": 3,
             "user_id":1,
             "question_id":2,
@@ -234,13 +231,8 @@ class BaseTestCase(TestCase):
             "answers":0,
             "status": "Pending"
         }
-        self.accept_answer={
+        self.accept_answer = {
             "status": "Accept"
-        }
-
-    @classmethod
-    def tearDownClass(cls):
-        pass
-        
+        }   
 if __name__ == '__main__':
     unittest.main()

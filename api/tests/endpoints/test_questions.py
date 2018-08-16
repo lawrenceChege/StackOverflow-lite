@@ -1,8 +1,8 @@
 """Test for methods applied to Questions"""
-from tests.baseTest import BaseTestCase
-
-import unittest
 import json
+import unittest
+from tests.basetest import BaseTestCase
+
 
 
 class TestRequestsTestCase(BaseTestCase):
@@ -18,25 +18,25 @@ class TestRequestsTestCase(BaseTestCase):
             self.question), headers={'content-type': "application/json"})
         self.assertEqual(response.status_code, 201)
         data = json.loads(response.get_data())
-        self.assertEqual(data['message'],'Question posted successfully!')
+        self.assertEqual(data['message'], 'Question posted successfully!')
         #no title
         response = self.app.post('/api/v1/questions/', data=json.dumps(
             self.question_no_title), headers={'content-type': "application/json"})
         self.assertEqual(response.status_code, 400)
         data = json.loads(response.get_data())
-        self.assertEqual(data['message'],'Questions need a title')
+        self.assertEqual(data['message'], 'Questions need a title')
         #invalid title
         response = self.app.post('/api/v1/questions/', data=json.dumps(
             self.question_invalid_title), headers={'content-type': "application/json"})
         self.assertEqual(response.status_code, 400)
         data = json.loads(response.get_data())
-        self.assertEqual(data['message'],'Title should be a string')
+        self.assertEqual(data['message'], 'Title should be a string')
         #no body
         response = self.app.post('/api/v1/questions/', data=json.dumps(
             self.question_no_body), headers={'content-type': "application/json"})
         self.assertEqual(response.status_code, 400)
         data = json.loads(response.get_data())
-        self.assertEqual(data['message'],'Body is a required')
+        self.assertEqual(data['message'], 'Body is a required')
 
     def test_user_view_all_questions(self):
         """Test for viewing all questions"""
@@ -44,15 +44,14 @@ class TestRequestsTestCase(BaseTestCase):
         response = self.app.get('/api/v1/questions/')
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.get_data())
-        self.assertEqual( data['message'],"all questions found successfully")
+        self.assertEqual(data['message'], "all questions found successfully")
 
-    def test_user_view_a_users_questions(self):
+    def test_view_users_questions(self):
         """Test for viewing a user's questions """
         response = self.app.get('/api/v1/questions/1/1')
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.get_data())
-        self.assertEqual( data['message'],"all question found successfully")
-        
+        self.assertEqual(data['message'], "all question found successfully")
 
     def test_user_view_a_question(self):
         """Test for vieving a particular question"""
@@ -62,13 +61,13 @@ class TestRequestsTestCase(BaseTestCase):
 
     def test_user_modify_a_question(self):
         """Test for modifying a request"""
-        
+
         response = self.app.put('/api/v1/questions/5',
-                                        data=json.dumps(
-                                            dict(body="no more games")),
-                                        headers={'content-type': "application/json"})
+                                data=json.dumps(
+                                    dict(body="no more playing games")),
+                                headers={'content-type': "application/json"})
         self.assertEqual(response.status_code, 200)
-        data=json.loads(response.get_data())
+        data = json.loads(response.get_data())
         self.assertEqual(data['message'], "Question successfully updated")
 
     def test_user_delete_a_request(self):
@@ -77,4 +76,4 @@ class TestRequestsTestCase(BaseTestCase):
         response = self.app.delete('/api/v1/questions/5')
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.get_data())
-        self.assertEqual( data['message'] , "Question successfuly deleted")
+        self.assertEqual(data['message'], "Question successfuly deleted")
