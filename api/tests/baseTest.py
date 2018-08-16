@@ -164,7 +164,7 @@ class BaseTestCase(TestCase):
             "id": 1,
             "user_id":1,
             "Title": 1234,
-            "Body": "",
+            "Body": "How come it 1234",
             "date_created": 11/3/18,
             "date_modified":12/3/18,
             "upvotes":3,
@@ -175,8 +175,7 @@ class BaseTestCase(TestCase):
             "id": 1,
             "user_id":1,
             "question_id":2,
-            "Title": "how are you doing?",
-            "Body": "",
+            "Body": "baby i am lost",
             "date_created": 11/3/18,
             "date_modified":12/3/18,
             "upvotes":3,
@@ -189,8 +188,7 @@ class BaseTestCase(TestCase):
                 "id": 1,
                 "user_id":1,
                 "question_id":2,
-                "Title": "how are you doing?",
-                "Body": "",
+                "Body": "i wish i knew",
                 "date_created": 11/3/18,
                 "date_modified":12/3/18,
                 "upvotes":3,
@@ -202,8 +200,7 @@ class BaseTestCase(TestCase):
                 "id": 2,
                 "user_id":1,
                 "question_id":2,
-                "Title": "how are you doing?",
-                "Body": "",
+                "Body": "nobody knows",
                 "date_created": 11/3/18,
                 "date_modified":12/3/18,
                 "upvotes":3,
@@ -215,8 +212,7 @@ class BaseTestCase(TestCase):
                 "id": 3,
                 "user_id":1,
                 "question_id":2,
-                "Title": "how are you doing?",
-                "Body": "",
+                "Body": "things are better",
                 "date_created": 11/3/18,
                 "date_modified":12/3/18,
                 "upvotes":3,
@@ -224,6 +220,19 @@ class BaseTestCase(TestCase):
                 "answers":0,
                 "status": "Pending"
             }
+        }
+        self.answer_no_body ={
+            "id": 3,
+            "user_id":1,
+            "question_id":2,
+            "Title": "how are you doing?",
+            "Body": "",
+            "date_created": 11/3/18,
+            "date_modified":12/3/18,
+            "upvotes":3,
+            "downvotes":1,
+            "answers":0,
+            "status": "Pending"
         }
         self.accept_answer={
             "status": "Accept"
