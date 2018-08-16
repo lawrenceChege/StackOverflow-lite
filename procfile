@@ -1,1 +1,2 @@
-web: gunicorn webapp:app
+web: gunicorn run:app
+gunicorn project.wsgi:application --preload --workers 1
