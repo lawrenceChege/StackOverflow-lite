@@ -14,7 +14,7 @@ postgres:
 before_script:
   - "psql -c 'create database db_test;' -U postgres"
   - "psql -c 'create database maintenancedb;' -U postgres"
-  - python migrations.py
+ 
   
 
 script:
@@ -24,7 +24,6 @@ script:
 
 
 after_success: 
-  - coveralls
   - codecov
 
 deploy:
