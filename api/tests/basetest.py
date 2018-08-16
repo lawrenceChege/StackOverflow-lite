@@ -12,19 +12,19 @@ class BaseTestCase(TestCase):
         self.app.testing = True
         self.users = [
             {
-                "id":1,
+                "user_id":1,
                 "username": "lau lau",
                 "email": "mbuchez9@gmail.com",
                 "password": "maembembili"
             },
             {
-                "id":2,
+                "user_id":2,
                 "username": "lau",
                 "email": "mbuchez8@gmail.com",
                 "password": "maembembili"
             },
             {
-                "id":3,
+                "user_id":3,
                 "username": "lalau",
                 "email": "mbuchez8@gmail.com",
                 "password": "maembembili"
@@ -76,10 +76,10 @@ class BaseTestCase(TestCase):
                             "password": "mimi"}
 
         self.question = {
-            "id": 1,
+            "question_id": 1,
             "user_id":1,
-            "Title":"how are you doing?",
-            "Body": "fogort hammer",
+            "title":"how are you doing?",
+            "body": "fogort hammer",
             "date_created": 11/3/18,
             "date_modified":12/3/18,
             "upvotes":3,
@@ -88,10 +88,10 @@ class BaseTestCase(TestCase):
         }
         self.questions = [
             {
-                "id": 1,
+                "question_id": 1,
                 "user_id":1,
-                "Title": "how are you doing?",
-                "Body": "fogort hammer",
+                "title": "how are you doing?",
+                "body": "fogort hammer",
                 "date_created": 11/3/18,
                 "date_modified":12/3/18,
                 "upvotes":3,
@@ -99,10 +99,10 @@ class BaseTestCase(TestCase):
                 "answers":0,
             },
             {
-                "id": 2,
+                "question_id": 2,
                 "user_id":1,
-                "Title": "how are you doing?",
-                "Body": "fogort hammer",
+                "title": "how are you doing?",
+                "body": "fogort hammer",
                 "date_created": 11/3/18,
                 "date_modified":12/3/18,
                 "upvotes":3,
@@ -110,10 +110,10 @@ class BaseTestCase(TestCase):
                 "answers":0,
             },
             {
-                "id": 3,
+                "question_id": 3,
                 "user_id":2,
-                "Title": "how are you doing?",
-                "Body": "fogort hammer",
+                "title": "how are you doing?",
+                "body": "fogort hammer",
                 "date_created": 11/3/18,
                 "date_modified":12/3/18,
                 "upvotes":3,
@@ -121,10 +121,10 @@ class BaseTestCase(TestCase):
                 "answers":0,
             },
             {
-                "id": 1,
+                "question_id": 1,
                 "user_id":1,
-                "Title": "how are you doing?",
-                "Body": "fogort hammer",
+                "title": "how are you doing?",
+                "body": "fogort hammer",
                 "date_created": 11/3/18,
                 "date_modified":12/3/18,
                 "upvotes":3,
@@ -133,10 +133,10 @@ class BaseTestCase(TestCase):
             }
         ]
         self.question_no_title = {
-            "id": 1,
+            "question_id": 1,
             "user_id":1,
-            "Title": "",
-            "Body": "fogort hammer",
+            "title": "",
+            "body": "fogort hammer",
             "date_created": 11/3/18,
             "date_modified":12/3/18,
             "upvotes":3,
@@ -144,10 +144,10 @@ class BaseTestCase(TestCase):
             "answers":0,
         }
         self.question_no_body = {
-            "id": 1,
+            "question_id": 1,
             "user_id":1,
-            "Title": "how are you doing?",
-            "Body": "",
+            "title": "how are you doing?",
+            "body": "",
             "date_created": 11/3/18,
             "date_modified":12/3/18,
             "upvotes":3,
@@ -155,10 +155,10 @@ class BaseTestCase(TestCase):
             "answers":0,
         }
         self.question_invalid_title = {
-            "id": 1,
+            "question_id": 1,
             "user_id":1,
-            "Title": 1234,
-            "Body": "How come it 1234",
+            "title": 1234,
+            "body": "How come it 1234",
             "date_created": 11/3/18,
             "date_modified":12/3/18,
             "upvotes":3,
@@ -166,10 +166,10 @@ class BaseTestCase(TestCase):
             "answers":0,
         }
         self.answer = {
-            "id": 1,
+            "answer_id": 1,
             "user_id":1,
             "question_id":2,
-            "Body": "baby i am lost",
+            "body": "baby i am lost",
             "date_created": 11/3/18,
             "date_modified":12/3/18,
             "upvotes":3,
@@ -179,10 +179,10 @@ class BaseTestCase(TestCase):
         }
         self.answers = [
             {
-                "id": 1,
+                "answer_id": 1,
                 "user_id":1,
                 "question_id":2,
-                "Body": "i wish i knew",
+                "body": "i wish i knew",
                 "date_created": 11/3/18,
                 "date_modified":12/3/18,
                 "upvotes":3,
@@ -191,10 +191,10 @@ class BaseTestCase(TestCase):
                 "status": "Pending"
             },
             {
-                "id": 2,
+                "answer_id": 2,
                 "user_id":1,
                 "question_id":2,
-                "Body": "nobody knows",
+                "body": "nobody knows",
                 "date_created": 11/3/18,
                 "date_modified":12/3/18,
                 "upvotes":3,
@@ -203,10 +203,10 @@ class BaseTestCase(TestCase):
                 "status": "Pending"
             },
             {
-                "id": 3,
+                "answer_id": 3,
                 "user_id":1,
                 "question_id":2,
-                "Body": "things are better",
+                "body": "things are better",
                 "date_created": 11/3/18,
                 "date_modified":12/3/18,
                 "upvotes":3,
@@ -216,11 +216,11 @@ class BaseTestCase(TestCase):
             }
         ]
         self.answer_no_body = {
-            "id": 3,
+            "answer_id": 3,
             "user_id":1,
             "question_id":2,
-            "Title": "how are you doing?",
-            "Body": "",
+            "title": "how are you doing?",
+            "body": "",
             "date_created": 11/3/18,
             "date_modified":12/3/18,
             "upvotes":3,
