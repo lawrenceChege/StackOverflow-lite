@@ -1,15 +1,11 @@
 """Test for methods applied to Questions"""
 import json
-import unittest
 from tests.basetest import BaseTestCase
 
 
 
 class TestRequestsTestCase(BaseTestCase):
     """Tests for Questions"""
-
-    def setUp(self):
-        pass
 
     def test_user_new_question(self):
         """Test for posting a question"""

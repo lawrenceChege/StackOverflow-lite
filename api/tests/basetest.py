@@ -1,19 +1,16 @@
 """ This is the base class for all the tests"""
 from unittest import TestCase
 import unittest
-from flask import Flask
-
-
-app = Flask(__name__)
+from app.app import app
 
 class BaseTestCase(TestCase):
     """ set up configurations for the test environment"""
     @classmethod
-    def setUpClass(cls, self):
+    def setUpClass(self):
         """set up app configuration"""
         self.app = app.test_client()
         self.app.testing = True
-        self.users = {
+        self.users = [
             {
                 "id":1,
                 "username": "lau lau",
@@ -32,7 +29,7 @@ class BaseTestCase(TestCase):
                 "email": "mbuchez8@gmail.com",
                 "password": "maembembili"
             }
-        }
+        ]
         self.person = {
             "username": "lau lau",
             "email": "mbuchez9@gmail.com",
@@ -89,7 +86,7 @@ class BaseTestCase(TestCase):
             "downvotes":1,
             "answers":0,
         }
-        self.questions = {
+        self.questions = [
             {
                 "id": 1,
                 "user_id":1,
@@ -134,7 +131,7 @@ class BaseTestCase(TestCase):
                 "downvotes":1,
                 "answers":0,
             }
-        }
+        ]
         self.question_no_title = {
             "id": 1,
             "user_id":1,
@@ -155,7 +152,7 @@ class BaseTestCase(TestCase):
             "date_modified":12/3/18,
             "upvotes":3,
             "downvotes":1,
-            "answers":0,   
+            "answers":0,
         }
         self.question_invalid_title = {
             "id": 1,
@@ -180,7 +177,7 @@ class BaseTestCase(TestCase):
             "answers":0,
             "status": "Pending"
         }
-        self.answers = {
+        self.answers = [
             {
                 "id": 1,
                 "user_id":1,
@@ -217,7 +214,7 @@ class BaseTestCase(TestCase):
                 "answers":0,
                 "status": "Pending"
             }
-        }
+        ]
         self.answer_no_body = {
             "id": 3,
             "user_id":1,
@@ -233,6 +230,6 @@ class BaseTestCase(TestCase):
         }
         self.accept_answer = {
             "status": "Accept"
-        }   
+        }
 if __name__ == '__main__':
     unittest.main()

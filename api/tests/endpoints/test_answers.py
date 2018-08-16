@@ -1,6 +1,5 @@
 """Test for methods applied to answers"""
 import json
-import unittest
 from tests.basetest import BaseTestCase
 
 

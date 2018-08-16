@@ -1,6 +1,5 @@
 """Tests for users"""
 import json
-import unittest
 from tests.basetest import BaseTestCase
 
 
