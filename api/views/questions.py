@@ -102,7 +102,7 @@ class Qusetion(Resource):
         """
         single_qn = [single_qn for single_qn in QNS if single_qn['question_id'] == question_id]
         if len(single_qn) == 0:
-            return {"message": "Question does not exist"},404
+            return {"message": "Question does not exist"}, 404
         return jsonify({"message": "Question successfully retrieved"},
                        {"single_qn": single_qn})
 
