@@ -2,7 +2,7 @@
 import datetime
 from flask import Blueprint, jsonify, request
 from flask_restful import reqparse, Resource
-from app.resources.resources import QNS
+from api.resources.resources import QNS
 
 
 QUESTIONS = Blueprint('questions', __name__,
