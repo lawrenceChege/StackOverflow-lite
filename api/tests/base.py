@@ -1,14 +1,14 @@
 """ This is the base class for all the tests"""
 from unittest import TestCase
 import unittest
-from api.app import app
+from api.app import APP
 
 class BaseTestCase(TestCase):
     """ set up configurations for the test environment"""
     @classmethod
     def setUpClass(self):
         """set up app configuration"""
-        self.app = app.test_client()
+        self.app = APP.test_client()
         self.app.testing = True
         self.users = [
             {
