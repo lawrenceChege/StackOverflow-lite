@@ -1,4 +1,5 @@
 ## Welcome to GitHub Pages
+[![codecov](https://codecov.io/gh/lawrenceChege/StackOverflow-lite/branch/challenge-2/graph/badge.svg)](https://codecov.io/gh/lawrenceChege/StackOverflow-lite)
 
 You can use the [editor on GitHub](https://github.com/lawrenceChege/StackOverflow-lite/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 

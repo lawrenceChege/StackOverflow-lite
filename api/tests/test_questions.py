@@ -46,7 +46,7 @@ class TestRequestsTestCase(BaseTestCase):
 
         #question does not exist
         response = self.app.get('/api/v1/questions/87878')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 404)
         data = json.loads(response.get_data())
         self.assertEqual(data['message'], "Question does not exist")
 
