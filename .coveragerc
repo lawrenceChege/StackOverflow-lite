@@ -3,7 +3,7 @@
 [run]
 source =
     api/
-    tests/
+    api/tests/
 
 # Let the system/travis understand the files to omit
 
