@@ -43,13 +43,13 @@ class TestRequestsTestCase(BaseTestCase):
     def test_user_view_an_answer(self):
         """Test for vieving a particular question"""
 
-        response_message = self.app.get('/api/v1/answers/1/6/')
+        response_message = self.app.get('/api/v1/answers/1/')
         self.assertEqual(response_message.status_code, 200)
 
     def test_user_modify_an_answer(self):
         """Test for modifying a request"""
 
-        response = self.app.put('/api/v1/answers/1/2/',
+        response = self.app.put('/api/v1/answers/2/',
                                 data=json.dumps(
                                     dict(body="no more games")),
                                 headers={'content-type': "application/json"})
@@ -60,7 +60,7 @@ class TestRequestsTestCase(BaseTestCase):
     def test_user_delete_an_answer(self):
         """Test for deleting an answer"""
 
-        response = self.app.delete('/api/v1/answers/1/3/')
+        response = self.app.delete('/api/v1/answers/3/')
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.get_data())
         self.assertEqual(data['message'], "Answer successfuly deleted")

@@ -78,7 +78,7 @@ class Answers(Resource):
 
 class Answer(Resource):
     """methods for single answers"""
-    def get(self, answer_id, question_id):
+    def get(self, answer_id):
         """"
         Gets an answer.
         ---
@@ -101,14 +101,13 @@ class Answer(Resource):
         404:
             description: Page not found.
         """
-        single_ans = [single_ans for single_ans in ANS if single_ans['answer_id'] == answer_id and
-        single_ans for single_ans in ANS if single_ans['question_id'] == question_id]
+        single_ans = [single_ans for single_ans in ANS if single_ans['answer_id'] == answer_id]
         if len(single_ans) == 0:
             return {"message": "answer does not exist"}
         return jsonify({"message": "answer successfully retrieved"},
                        {"single_ans": single_ans})
 
-    def put(self, answer_id, question_id):
+    def put(self, answer_id):
         """
         Modifies a request.
         ---
@@ -137,8 +136,7 @@ class Answer(Resource):
         404:
             description: Page not found.
         """
-        si_ans = [si_ans for si_ans in ANS if si_ans['answer_id'] == answer_id and
-        si_ans for si_ans in ANS if si_ans['question_id'] == question_id]
+        si_ans = [si_ans for si_ans in ANS if si_ans['answer_id'] == answer_id]
         if 'title' in request.json and not request.json['title']:
             return {"message": "Please enter a title"}, 400
         if 'body' in request.json and not request.json['body']:
@@ -149,7 +147,7 @@ class Answer(Resource):
         return jsonify({"message": "answer successfully updated"},
                        {"single_ans": si_ans})
 
-    def delete(self, answer_id, question_id):
+    def delete(self, answer_id):
         """
         Creates a new request.
         ---
@@ -172,7 +170,6 @@ class Answer(Resource):
         404:
             description: Page not found.
         """
-        single_ans = [single_ans for single_ans in ANS if single_ans['answer_id'] == answer_id and
-        single_ans for single_ans in ANS if single_ans['question_id'] == question_id]
+        single_ans = [single_ans for single_ans in ANS if single_ans['answer_id'] == answer_id]
         ANS.remove(single_ans[0])
         return jsonify({"message":"answer successfuly deleted"})
