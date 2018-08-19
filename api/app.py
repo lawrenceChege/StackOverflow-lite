@@ -7,7 +7,7 @@ from api.views.answers import ANSWERS, Answer, Answers, Ans
 
 APP = Flask(__name__)
 API = Api(APP)
-SWAGGER = Swagger(APP)
+Swagger(APP)
 APP.register_blueprint(QUESTIONS)
 APP.register_blueprint(ANSWERS)
 API.add_resource(Questions, '/api/v1/questions/')
