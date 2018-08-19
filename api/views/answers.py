@@ -18,7 +18,8 @@ class Ans(Resource):
     """ method for getting all answers"""
     def get(self):
         """ gets all answers"""
-        return jsonify({"message":"all answers found successfully"},{"answers":ANS})
+        return jsonify({"message":"all answers found successfully"},
+                       {"answers":ANS})
 
 
 class Answers(Resource):
@@ -73,18 +74,23 @@ class Answers(Resource):
     def get(self,question_id):
         """get all answers to a question"""
         qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
-        return jsonify({"message": "all answers found successfully"}, {"answers": qn_ans})
+        return jsonify({"message": "all answers to this question found successfully"},
+                       {"answers": qn_ans})
 
 
 class Answer(Resource):
     """methods for single answers"""
-    def get(self, answer_id):
+    def get(self, question_id, answer_id):
         """"
         Gets an answer.
         ---
         tags:
             - answers
         Parameters:
+            - in: formData
+            name: question_id
+            type: integer
+            required: true
             - in: formData
             name: answer_id
             type: integer
@@ -101,13 +107,14 @@ class Answer(Resource):
         404:
             description: Page not found.
         """
-        single_ans = [single_ans for single_ans in ANS if single_ans['answer_id'] == answer_id]
+        qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
+        single_ans = [single_ans for single_ans in qn_ans if single_ans['answer_id'] == answer_id]
         if len(single_ans) == 0:
             return {"message": "answer does not exist"}
         return jsonify({"message": "answer successfully retrieved"},
                        {"single_ans": single_ans})
 
-    def put(self, answer_id):
+    def put(self, question_id, answer_id):
         """
         Modifies a request.
         ---
@@ -120,6 +127,10 @@ class Answer(Resource):
             - in: formData
             name: body
             type: string
+            - in: formData
+            name: question_id
+            type: integer
+            required: true
             - in: formData
             name: answer_id
             type: integer
@@ -136,18 +147,16 @@ class Answer(Resource):
         404:
             description: Page not found.
         """
-        si_ans = [si_ans for si_ans in ANS if si_ans['answer_id'] == answer_id]
-        if 'title' in request.json and not request.json['title']:
-            return {"message": "Please enter a title"}, 400
+        qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
+        si_ans = [si_ans for si_ans in qn_ans if si_ans['answer_id'] == answer_id]
         if 'body' in request.json and not request.json['body']:
             return {"message": "body must be a string."}, 400
-        si_ans[0]['title'] = request.json.get('title', si_ans[0]['title'])
         si_ans[0]['body'] = request.json.get('body', si_ans[0]['body'])
         si_ans[0]['date_modified'] = str(datetime.datetime.now())
-        return jsonify({"message": "answer successfully updated"},
+        return jsonify({"message": "Answer successfully updated"},
                        {"single_ans": si_ans})
 
-    def delete(self, answer_id):
+    def delete(self, question_id, answer_id):
         """
         Creates a new request.
         ---
@@ -155,7 +164,11 @@ class Answer(Resource):
             - The Requests
         parameters:
             - in: formData
-            name: request_id
+            name: question_id
+            type: integer
+            required: true
+            - in: formData
+            name: answer_id
             type: integer
             required: true
         responses:
@@ -170,6 +183,7 @@ class Answer(Resource):
         404:
             description: Page not found.
         """
-        single_ans = [single_ans for single_ans in ANS if single_ans['answer_id'] == answer_id]
+        qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
+        single_ans = [single_ans for single_ans in qn_ans if single_ans['answer_id'] == answer_id]
         ANS.remove(single_ans[0])
-        return jsonify({"message":"answer successfuly deleted"})
+        return jsonify({"message":"Answer successfuly deleted"})
