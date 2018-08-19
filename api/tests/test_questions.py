@@ -39,22 +39,21 @@ class TestRequestsTestCase(BaseTestCase):
     def test_user_view_a_question(self):
         """Test for vieving a particular question"""
         #exisig quesion
-        response = self.app.get('/api/v1/questions/2')
+        response = self.app.get('/api/v1/questions/2/')
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.get_data())
         self.assertEqual(data[0]['message'], "Question successfully retrieved")
 
         #question does not exist
-        response = self.app.get('/api/v1/questions/87878')
+        response = self.app.get('/api/v1/questions/87878/')
         self.assertEqual(response.status_code, 404)
         data = json.loads(response.get_data())
         self.assertEqual(data['message'], "Question does not exist")
 
 
     def test_user_modify_a_question(self):
-        """Test for modifying a request"""
-
-        response = self.app.put('/api/v1/questions/3',
+        """Test for modifying a question """
+        response = self.app.put('/api/v1/questions/3/',
                                 data=json.dumps(
                                     dict(body="no more playing games")),
                                 headers={'content-type': "application/json"})
@@ -64,8 +63,7 @@ class TestRequestsTestCase(BaseTestCase):
 
     def test_user_delete_a_request(self):
         """Test for deleting a question"""
-
-        response = self.app.delete('/api/v1/questions/4')
+        response = self.app.delete('/api/v1/questions/4/')
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.get_data())
         self.assertEqual(data['message'], "Question successfuly deleted")
