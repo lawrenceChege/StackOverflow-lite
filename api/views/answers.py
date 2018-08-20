@@ -64,7 +64,7 @@ class Answer(Resource):
         qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
         single_ans = [single_ans for single_ans in qn_ans if single_ans['answer_id'] == answer_id]
         if len(single_ans) == 0:
-            return {"message": "answer does not exist"},404
+            return {"message": "answer does not exist"}, 404
         return jsonify({"message": "answer successfully retrieved"},
                        {"single_ans": single_ans})
 

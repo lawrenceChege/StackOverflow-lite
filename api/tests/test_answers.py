@@ -45,9 +45,8 @@ class TestRequestsTestCase(BaseTestCase):
         self.assertEqual(response_message.status_code, 200)
 
         #answer not found
-        response_message = self.app.get('/api/v1/answers/1/1/')
-        self.assertEqual(response_message.status_code, 404)
-         data = json.loads(response.get_data())
+        response = self.app.get('/api/v1/answers/1/19999999/')
+        data = json.loads(response.get_data())
         self.assertEqual(data['message'], "answer does not exist")
 
 

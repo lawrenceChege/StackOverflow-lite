@@ -68,7 +68,7 @@ class TestRequestsTestCase(BaseTestCase):
                                 headers={'content-type': "application/json"})
         self.assertEqual(response.status_code, 400)
         data = json.loads(response.get_data())
-        self.assertEqual(data[0]['message'], "body must be a string.")
+        self.assertEqual(data['message'], "body must be a string.")
 
 
     def test_user_delete_a_request(self):
