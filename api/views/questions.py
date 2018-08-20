@@ -72,8 +72,6 @@ class Qusetion(Resource):
         ---
         """
         si_qn = [si_qn for si_qn in QNS if si_qn['question_id'] == question_id]
-        if 'title' in request.json and not request.json['title']:
-            return {"message": "Please enter a title"}, 400
         if 'body' in request.json and not request.json['body']:
             return {"message": "body must be a string."}, 400
         si_qn[0]['title'] = request.json.get('title', si_qn[0]['title'])

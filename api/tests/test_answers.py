@@ -44,6 +44,13 @@ class TestRequestsTestCase(BaseTestCase):
         response_message = self.app.get('/api/v1/answers/1/1/')
         self.assertEqual(response_message.status_code, 200)
 
+        #answer not found
+        response_message = self.app.get('/api/v1/answers/1/1/')
+        self.assertEqual(response_message.status_code, 404)
+         data = json.loads(response.get_data())
+        self.assertEqual(data['message'], "answer does not exist")
+
+
     def test_user_modify_an_answer(self):
         """Test for modifying a request"""
         response = self.app.put('/api/v1/answers/2/2/',
@@ -53,6 +60,15 @@ class TestRequestsTestCase(BaseTestCase):
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.get_data())
         self.assertEqual(data[0]['message'], "Answer successfully updated")
+        #invalid input
+        response = self.app.put('/api/v1/answers/2/2/',
+                                data=json.dumps(
+                                    dict(body="")),
+                                headers={'content-type': "application/json"})
+        self.assertEqual(response.status_code, 400)
+        data = json.loads(response.get_data())
+        self.assertEqual(data['message'], "body must be a string.")
+
 
     def test_user_delete_an_answer(self):
         """Test for deleting an answer"""
