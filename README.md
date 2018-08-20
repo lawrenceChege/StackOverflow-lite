@@ -68,7 +68,7 @@ It provides the API endpoints for [Stackoverflow lite](https://stackoverflow-lit
 > or any other that you know of.
 > > Create a .env file and configure it with:
 
-``` source env/bin/activate
+```source env/bin/activate
 
 export FLASK_APP="run.py"
 
@@ -76,7 +76,7 @@ export SECRET="thisissupposedtobeapassword"
 
 export APP_SETTINGS="development"
 
-export DATABASE_URL="postgresql:username@password    //localhost/Pro-Tracker" ```
+export DATABASE_URL="postgresql:username@password    //localhost/Pro-Tracker"```
 
 >To activate virtualenv, run:
 
