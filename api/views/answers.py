@@ -27,29 +27,7 @@ class Answers(Resource):
     def post(self, question_id):
         """
         Posts a new answer.
-        ---
-        tags:
-            - New answer
-        parameters:
-        - in: formData
-            name: body
-            type: string
-            required: true
-        - in: formData
-            name: question_id
-            type: int
-            required: true
-        responses:
-        200:
-            description: The request was successful.
-        201:
-            description: New request created.
-        400:
-            description: Bad request made.
-        401:
-            description: Unauthorised access.
-        404:
-            description: Page not found.
+        
         """
         if 'body' in request.json and not request.json['body']:
             return {"message": "Body is required"}, 400
@@ -83,29 +61,7 @@ class Answer(Resource):
     def get(self, question_id, answer_id):
         """"
         Gets an answer.
-        ---
-        tags:
-            - answers
-        Parameters:
-            - in: formData
-            name: question_id
-            type: integer
-            required: true
-            - in: formData
-            name: answer_id
-            type: integer
-            required: true
-        responses:
-        200:
-            description: The request was successful.
-        201:
-        description: New request created.
-        400:
-            description: Bad request made.
-        401:
-            description: Unauthorised access.
-        404:
-            description: Page not found.
+        
         """
         qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
         single_ans = [single_ans for single_ans in qn_ans if single_ans['answer_id'] == answer_id]
@@ -116,36 +72,9 @@ class Answer(Resource):
 
     def put(self, question_id, answer_id):
         """
-        Modifies a request.
+        Modifies an answer.
         ---
-        tags:
-            - The Requests
-        parameters:
-            - in: formData
-            name: title
-            type: string
-            - in: formData
-            name: body
-            type: string
-            - in: formData
-            name: question_id
-            type: integer
-            required: true
-            - in: formData
-            name: answer_id
-            type: integer
-            required: true
-        responses:
-        200:
-            description: The request was successful.
-        201:
-            description: New request created.
-        400:
-            description: Bad request made.
-        401:
-            description: Unauthorised access.
-        404:
-            description: Page not found.
+        
         """
         qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
         si_ans = [si_ans for si_ans in qn_ans if si_ans['answer_id'] == answer_id]
@@ -158,30 +87,8 @@ class Answer(Resource):
 
     def delete(self, question_id, answer_id):
         """
-        Creates a new request.
-        ---
-        tags:
-            - The Requests
-        parameters:
-            - in: formData
-            name: question_id
-            type: integer
-            required: true
-            - in: formData
-            name: answer_id
-            type: integer
-            required: true
-        responses:
-        200:
-            description: The request was successful.
-        201:
-            description: New request created.
-        400:
-            description: Bad request made.
-        401:
-            description: Unauthorised access.
-        404:
-            description: Page not found.
+        delete an answer.
+        --- 
         """
         qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
         single_ans = [single_ans for single_ans in qn_ans if single_ans['answer_id'] == answer_id]
