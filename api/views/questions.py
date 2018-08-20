@@ -26,28 +26,6 @@ class Questions(Resource):
         """
         Posts a new question.
         ---
-        tags:
-            - New Question
-        parameters:
-        - in: formData
-            name: title
-            type: string
-            required: true
-        - in: formData
-            name: body
-            type: string
-            required: true
-        responses:
-        200:
-            description: The request was successful.
-        201:
-            description: New request created.
-        400:
-            description: Bad request made.
-        401:
-            description: Unauthorised access.
-        404:
-            description: Page not found.
         """
         if 'title' in request.json and not request.json['title']:
             return {"message": "Questions need a title"}, 400
@@ -81,24 +59,6 @@ class Qusetion(Resource):
         """"
         Gets a question.
         ---
-        tags:
-            - Questions
-        Parameters:
-            - in: formData
-            name: question_id
-            type: integer
-            required: true
-        responses:
-        200:
-            description: The request was successful.
-        201:
-        description: New request created.
-        400:
-            description: Bad request made.
-        401:
-            description: Unauthorised access.
-        404:
-            description: Page not found.
         """
         single_qn = [single_qn for single_qn in QNS if single_qn['question_id'] == question_id]
         if len(single_qn) == 0:
@@ -108,32 +68,8 @@ class Qusetion(Resource):
 
     def put(self, question_id):
         """
-        Modifies a request.
+        Modifies a question.
         ---
-        tags:
-            - The Requests
-        parameters:
-            - in: formData
-            name: title
-            type: string
-            - in: formData
-            name: body
-            type: string
-            - in: formData
-            name: question_id
-            type: integer
-            required: true
-        responses:
-        200:
-            description: The request was successful.
-        201:
-            description: New request created.
-        400:
-            description: Bad request made.
-        401:
-            description: Unauthorised access.
-        404:
-            description: Page not found.
         """
         si_qn = [si_qn for si_qn in QNS if si_qn['question_id'] == question_id]
         if 'title' in request.json and not request.json['title']:
@@ -148,26 +84,9 @@ class Qusetion(Resource):
 
     def delete(self, question_id):
         """
-        Creates a new request.
+        deletes a question.
         ---
-        tags:
-            - The Requests
-        parameters:
-            - in: formData
-            name: request_id
-            type: integer
-            required: true
-        responses:
-        200:
-            description: The request was successful.
-        201:
-            description: New request created.
-        400:
-            description: Bad request made.
-        401:
-            description: Unauthorised access.
-        404:
-            description: Page not found.
+        
         """
         single_qn = [single_qn for single_qn in QNS if single_qn['question_id'] == question_id]
         QNS.remove(single_qn[0])
