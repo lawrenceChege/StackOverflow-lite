@@ -154,7 +154,7 @@ class Answer(Resource):
         si_ans[0]['body'] = request.json.get('body', si_ans[0]['body'])
         si_ans[0]['date_modified'] = str(datetime.datetime.now())
         return jsonify({"message": "Answer successfully updated"},
-                       {"single_ans": si_ans})
+                       {"single_ans": si_ans[0]})
 
     def delete(self, question_id, answer_id):
         """
