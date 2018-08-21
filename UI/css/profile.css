@@ -73,3 +73,13 @@
 .profile-activity div{
     border-bottom: 1px solid white;
 }
+.side-card{
+    position: fixed;
+    z-index: 1;
+    top: 70px;
+    right: 100px;
+    overflow-x: hidden;
+    padding-bottom: 20px;
+    width: 14%; 
+    background-color: #8f919277
+}
