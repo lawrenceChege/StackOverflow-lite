@@ -2,9 +2,14 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.vscode
 
 # C extensions
 *.so
+#to be removed
+api/helpers/
+api/models/
+api/users/
 
 # Distribution / packaging
 .Python
