@@ -1,6 +1,6 @@
 """ holds resources for the app """
 import datetime
-QUESTIONS_DICT = [
+QUESTION_DICT = [
     {
         "question_id": 1,
         "user_id": 1,

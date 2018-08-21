@@ -84,7 +84,6 @@ class Qusetion(Resource):
         """
         deletes a question.
         ---
-        
         """
         single_questn = [single_questn for single_questn in QUESTION_DICT if single_questn['question_id'] == question_id]
         QUESTION_DICT.remove(single_questn[0])

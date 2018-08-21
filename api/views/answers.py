@@ -27,7 +27,6 @@ class Answers(Resource):
     def post(self, question_id):
         """
         Posts a new answer.
-        
         """
         if 'body' in request.json and not request.json['body']:
             return {"message": "Body is required"}, 400
@@ -86,7 +85,7 @@ class Answer(Resource):
     def delete(self, question_id, answer_id):
         """
         delete an answer.
-        --- 
+        ---
         """
         question_ans = [question_ans for question_ans in ANSWERS_DICT if question_ans['question_id'] == question_id]
         single_ans = [single_ans for single_ans in question_ans if single_ans['answer_id'] == answer_id]
