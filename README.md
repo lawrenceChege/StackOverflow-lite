@@ -1,5 +1,5 @@
 ## Welcome to Stackoverflow lite
-[![codecov](https://codecov.io/gh/lawrenceChege/StackOverflow-lite/branch/challenge-2/graph/badge.svg)](https://codecov.io/gh/lawrenceChege/StackOverflow-lite)
+[![Coverage Status](https://coveralls.io/repos/github/lawrenceChege/StackOverflow-lite/badge.svg?branch=159869319-challenge-2--updated)](https://coveralls.io/github/lawrenceChege/StackOverflow-lite?branch=159869319-challenge-2--updated)
 
 [![Build Status](https://travis-ci.org/lawrenceChege/StackOverflow-lite.svg?branch=159869319-challenge-2--updated)](https://travis-ci.org/lawrenceChege/StackOverflow-lite)
 
