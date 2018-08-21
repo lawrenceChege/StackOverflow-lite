@@ -1,11 +1,11 @@
 //navbar
 function classToggle() {
-    const navs = document.querySelectorAll('.nav-bar-items')
+    const navs = document.querySelectorAll(".nav-bar-items");
     
-    navs.forEach(nav => nav.classList.toggle('nav-bar-toggle-show'));
+    navs.forEach((nav) => nav.classList.toggle("nav-bar-toggle-show"));
   }
-  document.querySelector('.nav-bar-toggle')
-    .addEventListener('click', classToggle);
+  document.querySelector(".nav-bar-toggle")
+    .addEventListener("click", classToggle);
 
 // carosel
 // var myIndex = 0;
@@ -35,7 +35,6 @@ function myFunction(id) {
     }
 }
 var myNodelist = document.getElementsByTagName("LI");
-var i;
 for (i = 0; i < myNodelist.length; i++) {
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
@@ -51,14 +50,14 @@ for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     var div = this.parentElement;
     div.style.display = "none";
-  }
+  };
 }
 
 // Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
+var list = document.querySelector("ul");
+list.addEventListener("click", function(ev) {
+  if (ev.target.tagName === "LI") {
+    ev.target.classList.toggle("checked");
   }
 }, false);
 
@@ -68,7 +67,7 @@ function newElement() {
   var inputValue = document.getElementById("questions").value;
   var t = document.createTextNode(inputValue);
   li.appendChild(t);
-  if (inputValue === '') {
+  if (inputValue === " ") {
     alert("You must write something!");
   } else {
     document.getElementById("myquestionslist").appendChild(li);
