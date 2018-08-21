@@ -2,7 +2,7 @@
 import datetime
 from flask import Blueprint, jsonify, request
 from flask_restful import reqparse, Resource
-from api.resources.resources import QNS
+from api.resources.resources import QUESTION_DICT
 
 
 QUESTIONS = Blueprint('questions', __name__,
@@ -35,7 +35,7 @@ class Questions(Resource):
         title, body, question_id = (request.json['title'],
                                     request.json['body'],
                                     request.json['question_id'])
-        single_qn = {
+        single_questn = {
             'question_id': question_id,
             "title": title,
             "body": body,
@@ -45,12 +45,12 @@ class Questions(Resource):
             "downvotes": 0,
             "answers": 0,
         }
-        QNS.append(single_qn)
+        QUESTION_DICT.append(single_questn)
         return jsonify({"message": "Question posted successfully!"},
-                       {"sigle_qn": single_qn})
+                       {"sigle_qn": single_questn})
     def get(self):
         """get all questsions"""
-        return jsonify({"message": "all questions found successfully"}, {"questions": QNS})
+        return jsonify({"message": "all questions found successfully"}, {"questions": QUESTION_DICT})
 
 
 class Qusetion(Resource):
@@ -60,25 +60,25 @@ class Qusetion(Resource):
         Gets a question.
         ---
         """
-        single_qn = [single_qn for single_qn in QNS if single_qn['question_id'] == question_id]
-        if len(single_qn) == 0:
+        single_questn = [single_questn for single_questn in QUESTION_DICT if single_questn['question_id'] == question_id]
+        if len(single_questn) == 0:
             return {"message": "Question does not exist"}, 404
         return jsonify({"message": "Question successfully retrieved"},
-                       {"single_qn": single_qn})
+                       {"single_questn": single_questn})
 
     def put(self, question_id):
         """
         Modifies a question.
         ---
         """
-        si_qn = [si_qn for si_qn in QNS if si_qn['question_id'] == question_id]
+        single_question = [single_question for single_question in QUESTION_DICT if single_question['question_id'] == question_id]
         if 'body' in request.json and not request.json['body']:
             return {"message": "body must be a string."}, 400
-        si_qn[0]['title'] = request.json.get('title', si_qn[0]['title'])
-        si_qn[0]['body'] = request.json.get('body', si_qn[0]['body'])
-        si_qn[0]['date_modified'] = str(datetime.datetime.now())
+        single_question[0]['title'] = request.json.get('title', single_question[0]['title'])
+        single_question[0]['body'] = request.json.get('body', single_question[0]['body'])
+        single_question[0]['date_modified'] = str(datetime.datetime.now())
         return jsonify({"message": "Question successfully updated"},
-                       {"single_qn": si_qn})
+                       {"single_questn": single_question})
 
     def delete(self, question_id):
         """
@@ -86,6 +86,6 @@ class Qusetion(Resource):
         ---
         
         """
-        single_qn = [single_qn for single_qn in QNS if single_qn['question_id'] == question_id]
-        QNS.remove(single_qn[0])
+        single_questn = [single_questn for single_questn in QUESTION_DICT if single_questn['question_id'] == question_id]
+        QUESTION_DICT.remove(single_questn[0])
         return jsonify({"message":"Question successfuly deleted"})

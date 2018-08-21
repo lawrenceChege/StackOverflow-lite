@@ -2,7 +2,7 @@
 import datetime
 from flask import Blueprint, jsonify, request
 from flask_restful import reqparse, Resource
-from api.resources.resources import ANS
+from api.resources.resources import ANSWERS_DICT
 
 
 ANSWERS = Blueprint('answers', __name__,
@@ -19,7 +19,7 @@ class Ans(Resource):
     def get(self):
         """ gets all answers"""
         return jsonify({"message":"all answers found successfully"},
-                       {"answers":ANS})
+                       {"answers":ANSWERS_DICT})
 
 
 class Answers(Resource):
@@ -44,14 +44,14 @@ class Answers(Resource):
             "downvotes": 0,
             "status": "pending",
         }
-        ANS.append(single_ans)
+        ANSWERS_DICT.append(single_ans)
         return jsonify({"message": "answer posted successfully!"},
                        {"sigle_ans": single_ans})
     def get(self,question_id):
         """get all answers to a question"""
-        qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
+        question_ans = [question_ans for question_ans in ANSWERS_DICT if question_ans['question_id'] == question_id]
         return jsonify({"message": "all answers to this question found successfully"},
-                       {"answers": qn_ans})
+                       {"answers": question_ans})
 
 
 class Answer(Resource):
@@ -61,8 +61,8 @@ class Answer(Resource):
         Gets an answer.
         
         """
-        qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
-        single_ans = [single_ans for single_ans in qn_ans if single_ans['answer_id'] == answer_id]
+        question_ans = [question_ans for question_ans in ANSWERS_DICT if question_ans['question_id'] == question_id]
+        single_ans = [single_ans for single_ans in question_ans if single_ans['answer_id'] == answer_id]
         if len(single_ans) == 0:
             return {"message": "answer does not exist"}, 404
         return jsonify({"message": "answer successfully retrieved"},
@@ -74,21 +74,21 @@ class Answer(Resource):
         ---
         
         """
-        qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
-        si_ans = [si_ans for si_ans in qn_ans if si_ans['answer_id'] == answer_id]
+        question_ans = [question_ans for question_ans in ANSWERS_DICT if question_ans['question_id'] == question_id]
+        single_answer = [single_answer for single_answer in question_ans if single_answer['answer_id'] == answer_id]
         if 'body' in request.json and not request.json['body']:
             return {"message": "body must be a string."}, 400
-        si_ans[0]['body'] = request.json.get('body', si_ans[0]['body'])
-        si_ans[0]['date_modified'] = str(datetime.datetime.now())
+        single_answer[0]['body'] = request.json.get('body', single_answer[0]['body'])
+        single_answer[0]['date_modified'] = str(datetime.datetime.now())
         return jsonify({"message": "Answer successfully updated"},
-                       {"single_ans": si_ans[0]})
+                       {"single_ans": single_answer[0]})
 
     def delete(self, question_id, answer_id):
         """
         delete an answer.
         --- 
         """
-        qn_ans = [qn_ans for qn_ans in ANS if qn_ans['question_id'] == question_id]
-        single_ans = [single_ans for single_ans in qn_ans if single_ans['answer_id'] == answer_id]
-        ANS.remove(single_ans[0])
+        question_ans = [question_ans for question_ans in ANSWERS_DICT if question_ans['question_id'] == question_id]
+        single_ans = [single_ans for single_ans in question_ans if single_ans['answer_id'] == answer_id]
+        ANSWERS_DICT.remove(single_ans[0])
         return jsonify({"message":"Answer successfuly deleted"})
