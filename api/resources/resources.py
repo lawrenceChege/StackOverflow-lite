@@ -1,6 +1,7 @@
 """ holds resources for the app """
 import datetime
-QNS = [
+
+QUESTION_DICT = [
     {
         "question_id": 1,
         "user_id": 1,
@@ -46,7 +47,7 @@ QNS = [
         "answers": 0,
     }
 ]
-ANS = [
+ANSWERS_DICT = [
     {
         "answer_id": 1,
         "user_id": 3,

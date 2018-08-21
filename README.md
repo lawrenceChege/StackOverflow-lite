@@ -1,7 +1,8 @@
 ## Welcome to Stackoverflow lite
-[![codecov](https://codecov.io/gh/lawrenceChege/StackOverflow-lite/branch/challenge-2/graph/badge.svg)](https://codecov.io/gh/lawrenceChege/StackOverflow-lite)
-
+[![Coverage Status](https://coveralls.io/repos/github/lawrenceChege/StackOverflow-lite/badge.svg?branch=159869319-challenge-2--updated)](https://coveralls.io/github/lawrenceChege/StackOverflow-lite?branch=159869319-challenge-2--updated)
 [![Build Status](https://travis-ci.org/lawrenceChege/StackOverflow-lite.svg?branch=159869319-challenge-2--updated)](https://travis-ci.org/lawrenceChege/StackOverflow-lite)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ed06115e90bb45c595b3f34200eb1ad4)](https://www.codacy.com/project/lawrenceChege/StackOverflow-lite/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lawrenceChege/StackOverflow-lite&amp;utm_campaign=Badge_Grade_Dashboard)
+
 
 ## what it does
 
@@ -68,7 +69,8 @@ It provides the API endpoints for [Stackoverflow lite](https://stackoverflow-lit
 > or any other that you know of.
 > > Create a .env file and configure it with:
 
-``` source env/bin/activate
+``` gherkin
+source env/bin/activate
 
 export FLASK_APP="run.py"
 
@@ -76,7 +78,8 @@ export SECRET="thisissupposedtobeapassword"
 
 export APP_SETTINGS="development"
 
-export DATABASE_URL="postgresql:username@password    //localhost/Pro-Tracker" ```
+export DATABASE_URL="postgresql:username@password    //localhost/dbname"
+```
 
 >To activate virtualenv, run:
 
@@ -93,24 +96,27 @@ export DATABASE_URL="postgresql:username@password    //localhost/Pro-Tracker" ``
 
 > or:
 
-`python3 -m pip install -r requirements.txt`
+### Test Endpoints
+> To test endpoints follow this [link](https://stackoverflow-liter.herokuapp.com/) to the heroku app
+
+> Then use the endpoints below to test them on post man
 
 ## API-Endpoints
 
 For user:
 
-Test | API-endpoint |HTTP-Verb
------------- | ------------- | ------------
-Users can create new question |/api/v1/questions/ | POST
-users can view all their questions | /api/v1/questions/ | GET
-users can view a question | /api/v1/questions/<question_id>/ | GET
-users can modify their question | /api/v1/questions/<question_id>/ | PUT
-users can delete a question | /api/v1/questions/<question_id>/ | DELETE
-Users can create a new answer |/api/v1/answers/<int:question_id>/ | POST
-users can view all answers to aquestion | /api/v1/answers/<question_id> | GET
-users can view an answer | /api/v1/answers/<question_id>/<answer_id> | GET
-users can modify their answers | /api/v1/answers/<question_id>/<answer_id> | PUT
-users can delete an answer | /api/v1/answers/<question_id>/<answer_id> | DELETE
+Test | API-endpoint |HTTP-Verb | Inputs
+---------------------| ---------------- | ------ | ----------------
+Users can create new question |/api/v1/questions/ | POST | {"question_id":7,"title":"title","body":"body"}
+users can view all their questions | /api/v1/questions/ | GET | None
+users can view a question | /api/v1/questions/<int:question_id>/ | GET |None
+users can modify their question | /api/v1/questions/<int:question_id>/ | PUT |{"title":"title", "body":"body"}
+users can delete a question | /api/v1/questions/<int:question_id>/ | DELETE |None
+users can view all answers to a question | /api/v1/answers/<int:question_id> | GET | None
+Users can create a new answer |/api/v1/answers/<int:question_id>/ | POST |{"question_id":1,"answer_id":7,"body":"body"}
+users can view an answer | /api/v1/answers/<int:question_id>/<int:answer_id> | GET |None 
+users can modify their answers | /api/v1/answers/<int:question_id>/<int:answer_id> | PUT |{"body":"body"}
+users can delete an answer | /api/v1/answers/<int:question_id>/<int:answer_id> | DELETE | None
 
 *Testing*
 > you could test each endpoint on postman or curl
@@ -127,8 +133,15 @@ or
 ### Acknowledgement
 
 *Andela Kenya*
+
+*Bootcamp-cohort31-comrades*
+
 *Rockstars-Team*
 
 ### Support or Contact
 
+[Github Pages](https://lawrencechege.github.io/StackOverflow-lite/)
 
+[Heroku App](https://stackoverflow-liter.herokuapp.com/)
+
+*"If you know, You know"*

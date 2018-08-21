@@ -61,6 +61,16 @@ class TestRequestsTestCase(BaseTestCase):
         data = json.loads(response.get_data())
         self.assertEqual(data[0]['message'], "Question successfully updated")
 
+        #invalid body
+        response = self.app.put('/api/v1/questions/3/',
+                                data=json.dumps(
+                                    dict(body="")),
+                                headers={'content-type': "application/json"})
+        self.assertEqual(response.status_code, 400)
+        data = json.loads(response.get_data())
+        self.assertEqual(data['message'], "body must be a string.")
+
+
     def test_user_delete_a_request(self):
         """Test for deleting a question"""
         response = self.app.delete('/api/v1/questions/4/')
