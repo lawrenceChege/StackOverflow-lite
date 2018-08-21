@@ -106,7 +106,7 @@ export DATABASE_URL="postgresql:username@password    //localhost/dbname"
 For user:
 
 Test | API-endpoint |HTTP-Verb | Inputs
------------- | ------------- | ------------ | ------------------
+---------------------| ---------------- | ------ | ----------------
 Users can create new question |/api/v1/questions/ | POST | {"question_id":7,"title":"title","body":"body"}
 users can view all their questions | /api/v1/questions/ | GET | None
 users can view a question | /api/v1/questions/<int:question_id>/ | GET |None
