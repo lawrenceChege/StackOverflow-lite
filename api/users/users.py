@@ -1,15 +1,16 @@
 """this holds the methods for the users"""
 import psycopg2
-from flask import jsonify, request
+from flask import jsonify, request, Blueprint
 from flask_restful import Resource, reqparse
 from werkzeug.security import generate_password_hash
 from api.resources.validators import check_blank, check_password, check_email
 from api.helpers.helper_users import HelperDb
 
 
-
+USER = Blueprint("user", __name__, 
+                url_prefix="api/v2/auth/")
 conn = psycopg2.connect(
-    "dbname='maintenancedb' user='postgres' password='       ' host='localhost'")
+    "dbname='stackoverflow' user='postgres' password='12345678' host='localhost'")
 
 cur = conn.cursor()
 
