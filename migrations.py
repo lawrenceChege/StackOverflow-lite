@@ -48,6 +48,7 @@ def create_tables():
         CREATE TABLE IF NOT EXISTS answers(answer_id SERIAL PRIMARY KEY,
                                 question_id INT REFERENCES questions(question_id),
                                 body VARCHAR(100) NOT NULL,
+                                title VARCHAR(100) NOT NULL,
                                 date_created DATE NOT NULL DEFAULT CURRENT_DATE,
                                 date_modified DATE NOT NULL DEFAULT CURRENT_DATE,
                                 upvotes INT NOT NULL,
