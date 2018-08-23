@@ -11,7 +11,7 @@ class TestRequestsTestCase(BaseTestCase):
         #correct request
         response = self.app.post('/api/v1/questions/', data=json.dumps(
             self.question), headers={'content-type': "application/json"})
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         data = json.loads(response.get_data())
         self.assertEqual(data[0]['message'], 'Question posted successfully!')
         #no title
@@ -38,7 +38,7 @@ class TestRequestsTestCase(BaseTestCase):
 
     def test_user_view_a_question(self):
         """Test for vieving a particular question"""
-        #exisig quesion
+        #existing quesion
         response = self.app.get('/api/v1/questions/2/')
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.get_data())

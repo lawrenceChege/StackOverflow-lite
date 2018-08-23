@@ -76,7 +76,7 @@ class HelperDb(object):
                 "SELECT * FROM questions WHERE question_id = %s", (question_id,))
             request_i = self.cur.fetchall()
             if len(request_i) > 0:
-                return request_i, 200
+                return jsonify({"message":"Question successfully retrieved"},{"Question": request_i})
             else:
                 return {"message":"Request does not exitst!"},400
         except(Exception, psycopg2.DatabaseError) as error:
