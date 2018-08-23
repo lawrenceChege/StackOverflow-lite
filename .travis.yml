@@ -5,7 +5,16 @@ language: python
 python:
   - "3.6"
 
-
+addons:
+  postgresql: "10"
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
+env:
+  global:
+  - PGPORT=5433
+  
 # command to install dependencies in the requirements file
 # You can also install the coverage here to avoid it being in the requirements file
 # It is important to avoid things like coverage, pep8 that are not required to run the app
@@ -14,6 +23,11 @@ install:
   - pip install coverage
   - pip install codecov
 
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
 
 # command to run tests
 # This is the script that enables travis to run the tests
@@ -25,6 +39,7 @@ script: true
 script:
   - pytest
   - pytest --cov=./api/
+
 
 # This returns the coverage and let's coveralls know the coverage percent.
 # Note that travis will build your system and get the coverage.
