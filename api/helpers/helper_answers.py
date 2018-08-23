@@ -26,8 +26,8 @@ class HelperDb(object):
                 return {"message":"answer with similar title exists"}, 400
             else:
                 self.cur.execute(""" 
-                                    INSERT INTO answers (title, body, username, upvotes, downvotes, answers)
-                                                            VALUES (%(title)s, %(body)s, %(username)s, %(upvotes)s, %(downvotes)s, %(answers)s)
+                                    INSERT INTO answers (question_id, title, body, username, upvotes, downvotes, status)
+                                                            VALUES (%(question_id)s, %(title)s, %(body)s, %(username)s, %(upvotes)s, %(downvotes)s, %(status)s)
                                 """, single_answer)
                 self.conn.commit()
                 return {"message":"answer posted successfully!"}, 201
@@ -69,7 +69,7 @@ class HelperDb(object):
             print(error)
             return {"message": error}, 400
 
-    def get_request(self, answer_id):
+    def get_answers(self, answer_id):
         """helper for retrieving one answer"""
         try:
             self.cur.execute(
@@ -79,6 +79,20 @@ class HelperDb(object):
                 return request_i, 200
             else:
                 return {"message":"Request does not exitst!"},400
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return {"message": error}, 400
+
+    def get_request(self, answer_id):
+        """helper for retrieving one answer"""
+        try:
+            self.cur.execute(
+                "SELECT * FROM answers WHERE answe_id = %s", (answer_id,))
+            single_answer = self.cur.fetchall()
+            if len(single_answer) > 0:
+                return single_answer, 200
+            else:
+                return {"message":"Request does not exist!"},400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
             return {"message": error}, 400
