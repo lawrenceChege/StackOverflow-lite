@@ -26,8 +26,8 @@ class HelperDb(object):
                 return {"message":"Question with similar title exists"}, 400
             else:
                 self.cur.execute(""" 
-                                    INSERT INTO questions (title, body, username)
-                                                            VALUES (%(title)s, %(body)s, %(username)s)
+                                    INSERT INTO questions (title, body, username, upvotes, downvotes, answers)
+                                                            VALUES (%(title)s, %(body)s, %(username)s, %(upvotes)s, %(downvotes)s, %(answers)s)
                                 """, single_question)
                 self.conn.commit()
                 return {"message":"Question posted successfully!"}, 201
