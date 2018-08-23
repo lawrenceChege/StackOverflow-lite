@@ -22,7 +22,6 @@ install:
   - pip install -r requirements.txt
   - pip install coverage
   - pip install codecov
-
 # command to run tests
 # This is the script that enables travis to run the tests
 # There are many ways to do dependeing on how you want travis to run and get you coverage
