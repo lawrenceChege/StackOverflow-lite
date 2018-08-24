@@ -1,6 +1,14 @@
 """Connect to database."""
 import psycopg2
-from manage import Database
+
+
+def connectTODB():
+    conn_string = "dbname='stackoverflow' user='postgres' password='12345678' host='localhost'"
+    try:
+        print("connecting to database ...")
+        return psycopg2.connect(conn_string)
+    except:
+        print("Connection to database failed!")
 
 
 def create_tables():
@@ -43,7 +51,7 @@ def create_tables():
     conn=None
     try:
         # connect to PostgreSQL server
-        conn=Database().connectTODB()
+        conn=connectTODB()
         cur=conn.cursor()
         # create a table
         for command in commands:
@@ -58,3 +66,5 @@ def create_tables():
         if conn is not None:
             conn.close()
 
+if __name__ == '__main__':
+    create_tables()
