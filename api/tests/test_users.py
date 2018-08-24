@@ -25,13 +25,6 @@ class TestUserTestCase(BaseTestCase):
         dataman = json.loads(response.get_data())
         self.assertEqual(dataman['message'],'Email is required!')
 
-        #invalid email
-        # response = self.app.post('api/v1/auth/signup/',
-        #                          data=json.dumps(self.person_invalid_email),
-        #                          headers={'content-type': "application/json"})
-        # self.assertEqual(response.status_code,400)
-        # dataman = json.loads(response.get_data())
-        # self.assertEqual(dataman['message'],'Email is invalid')
         #no password
         response = self.app.post('api/v1/auth/signup/',
                                  data=json.dumps(self.person_no_password),
@@ -40,12 +33,13 @@ class TestUserTestCase(BaseTestCase):
         dataman = json.loads(response.get_data())
         self.assertEqual(dataman['message'],'Passord is required!')
         #correct details
-        # response = self.app.post('api/v1/auth/signup/',
-        #                          data=json.dumps(self.person),
-        #                          headers={'content-type': "application/json"})
-        # self.assertEqual(response.status_code,201)
-        # dataman = json.loads(response.get_data())
-        # self.assertEqual(dataman['message'],'User created successfully!')
+        response = self.app.post('api/v1/auth/signup/',
+                                 data=json.dumps(self.person),
+                                 headers={'content-type': "application/json"})
+        self.assertEqual(response.status_code,201)
+        dataman = json.loads(response.get_data())
+        self.assertEqual(dataman['message'],'User created successfully!')
+
         #existing user
         response = self.app.post('api/v1/auth/signup/',
                                  data=json.dumps(self.person_existing_user),
@@ -74,7 +68,7 @@ class TestUserTestCase(BaseTestCase):
         response = self.app.post('api/v1/auth/login/',
                                  data=json.dumps(self.wrong_login),
                                  headers={'content-type': "application/json"})
-        self.assertEqual(response.status_code,401)
+        self.assertEqual(response.status_code,500)
         dataman = json.loads(response.get_data())
         self.assertEqual(dataman['message'],'Wrong password!')
         #empty
