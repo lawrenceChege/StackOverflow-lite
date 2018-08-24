@@ -1,6 +1,7 @@
 """ This is the base class for all the tests"""
 from unittest import TestCase
 import unittest
+import testing.postgresql
 from api.app import APP
 
 class BaseTestCase(TestCase):
@@ -8,6 +9,7 @@ class BaseTestCase(TestCase):
     @classmethod
     def setUpClass(self):
         """set up app configuration"""
+        self.postgresql = testing.postgresql.Postgresql(port=7654)
         self.app = APP.test_client()
         self.app.testing = True
         self.users = [
@@ -231,5 +233,9 @@ class BaseTestCase(TestCase):
         self.accept_answer = {
             "status": "Accept"
         }
+        
+    def tearDown(self):
+        self.postgresql.stop()
+
 if __name__ == '__main__':
     unittest.main()

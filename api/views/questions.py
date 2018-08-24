@@ -2,7 +2,8 @@
 import datetime
 from flask import Blueprint, jsonify, request
 from flask_restful import reqparse, Resource
-from api.resources.resources import QUESTION_DICT
+from api.helpers.helper_questions import HelperDb
+from flask_jwt_extended import get_jwt_identity
 
 
 QUESTIONS = Blueprint('questions', __name__,
@@ -31,12 +32,10 @@ class Questions(Resource):
             return {"message": "Questions need a title"}, 400
         if 'body' in request.json and not request.json['body']:
             return {"message": "Body is required"}, 400
-
-        title, body, question_id = (request.json['title'],
-                                    request.json['body'],
-                                    request.json['question_id'])
-        single_questn = {
-            'question_id': question_id,
+        title, body = (request.json['title'],
+                        request.json['body'])
+        current_user = get_jwt_identity()
+        single_question = {
             "title": title,
             "body": body,
             "date_created": str(datetime.datetime.now()),
@@ -44,14 +43,13 @@ class Questions(Resource):
             "upvotes": 0,
             "downvotes": 0,
             "answers": 0,
+            "username":current_user,
         }
-        QUESTION_DICT.append(single_questn)
-        return jsonify({"message": "Question posted successfully!"},
-                       {"sigle_qn": single_questn})
+        return HelperDb().create_request(single_question)
+
     def get(self):
         """get all questsions"""
-        return jsonify({"message": "all questions found successfully"}, {"questions": QUESTION_DICT})
-
+        return HelperDb().get_all_questions()
 
 class Qusetion(Resource):
     """methods for single questions"""
@@ -60,31 +58,29 @@ class Qusetion(Resource):
         Gets a question.
         ---
         """
-        single_questn = [single_questn for single_questn in QUESTION_DICT if single_questn['question_id'] == question_id]
-        if len(single_questn) == 0:
-            return {"message": "Question does not exist"}, 404
-        return jsonify({"message": "Question successfully retrieved"},
-                       {"single_questn": single_questn})
+        return HelperDb().get_request(question_id)
 
     def put(self, question_id):
         """
         Modifies a question.
         ---
         """
-        single_question = [single_question for single_question in QUESTION_DICT if single_question['question_id'] == question_id]
+        if 'title' in request.json and not request.json['title']:
+            return {"message": "Questions need a title"}, 400
         if 'body' in request.json and not request.json['body']:
-            return {"message": "body must be a string."}, 400
-        single_question[0]['title'] = request.json.get('title', single_question[0]['title'])
-        single_question[0]['body'] = request.json.get('body', single_question[0]['body'])
-        single_question[0]['date_modified'] = str(datetime.datetime.now())
-        return jsonify({"message": "Question successfully updated"},
-                       {"single_questn": single_question})
+            return {"message": "Body is required"}, 400
+        title, body = (request.json['title'],
+                        request.json['body'])
+        single_question = {
+            "title": title,
+            "body": body,
+            "date_modified": str(datetime.datetime.now()),
+        }
+        return HelperDb().update_request(question_id, single_question)
 
     def delete(self, question_id):
         """
         deletes a question.
         ---
         """
-        single_questn = [single_questn for single_questn in QUESTION_DICT if single_questn['question_id'] == question_id]
-        QUESTION_DICT.remove(single_questn[0])
-        return jsonify({"message":"Question successfuly deleted"})
+        return HelperDb().delete_request(question_id)
