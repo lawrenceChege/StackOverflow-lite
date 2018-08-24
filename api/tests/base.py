@@ -85,6 +85,10 @@ class BaseTestCase(TestCase):
             "title":"how are they doing?",
             "body": "fogort hammer"
         }
+        self.update_answer = {
+            "title":"how are they doing?",
+            "body": "fogort hammer"
+        }
         self.questions = [
             {
                 "question_id": 1,
