@@ -2,6 +2,7 @@
 import datetime
 from flask import Blueprint, jsonify, request
 from flask_restful import reqparse, Resource
+from flask_jwt_extended import get_jwt_identity
 from api.helpers.helper_answers import HelperDb
 
 
@@ -43,6 +44,7 @@ class Answers(Resource):
             "upvotes": 0,
             "downvotes": 0,
             "status": "pending",
+            "username": get_jwt_identity(),
         }
         return HelperDb().create_request(single_answer)
     def get(self,question_id):

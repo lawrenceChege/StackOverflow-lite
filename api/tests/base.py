@@ -1,6 +1,7 @@
 """ This is the base class for all the tests"""
 from unittest import TestCase
 import unittest
+import testing.postgresql
 from api.app import APP
 
 class BaseTestCase(TestCase):

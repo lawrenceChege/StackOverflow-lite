@@ -69,25 +69,25 @@ class HelperDb(object):
             print(error)
             return {"message": error}, 400
 
-    def get_answers(self, answer_id):
-        """helper for retrieving one answer"""
+    def get_answers(self, question_id):
+        """helper for retrieving  answers for one question"""
+        try:
+            self.cur.execute(
+                "SELECT * FROM answers WHERE question_id = %s", (question_id,))
+            request_i = self.cur.fetchall()
+            if len(request_i) > 0:
+                return {"answers":request_i}, 200
+            else:
+                return {"message":"Answers does not exitst!"},400
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return {"message": "bad connection"}, 400
+
+    def get_request(self, answer_id):
+        """helper for retrieving an answer"""
         try:
             self.cur.execute(
                 "SELECT * FROM answers WHERE answer_id = %s", (answer_id,))
-            request_i = self.cur.fetchall()
-            if len(request_i) > 0:
-                return request_i, 200
-            else:
-                return {"message":"Request does not exitst!"},400
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return {"message": error}, 400
-
-    def get_request(self, answer_id):
-        """helper for retrieving one answer"""
-        try:
-            self.cur.execute(
-                "SELECT * FROM answers WHERE answe_id = %s", (answer_id,))
             single_answer = self.cur.fetchall()
             if len(single_answer) > 0:
                 return single_answer, 200

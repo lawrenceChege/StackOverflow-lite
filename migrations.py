@@ -38,7 +38,6 @@ def create_tables():
                                 upvotes INT NOT NULL DEFAULT 0,
                                 downvotes INT NOT NULL DEFAULT 0,
                                 answers INT NOT NULL DEFAULT 0,
-                                answers INT NOT NULL,
                                 username CHAR(50)REFERENCES users (username)
         )
     """,
