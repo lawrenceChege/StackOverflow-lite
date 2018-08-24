@@ -33,8 +33,8 @@ class BaseTestCase(TestCase):
             }
         ]
         self.person = {
-            "username": "lau lau",
-            "email": "mbuchez9@gmail.com",
+            "username": "lauau",
+            "email": "mbuch@gmail.com",
             "password": "maembembili"
         }
         self.person_no_username = {
@@ -78,15 +78,12 @@ class BaseTestCase(TestCase):
                             "password": "mimi"}
 
         self.question = {
-            "question_id": 1,
-            "user_id":1,
             "title":"how are you doing?",
-            "body": "fogort hammer",
-            "date_created": 11/3/18,
-            "date_modified":12/3/18,
-            "upvotes":3,
-            "downvotes":1,
-            "answers":0,
+            "body": "fogort hammer"
+        }
+        self.update_question ={
+            "title":"how are they doing?",
+            "body": "fogort hammer"
         }
         self.questions = [
             {
@@ -171,6 +168,7 @@ class BaseTestCase(TestCase):
             "answer_id": 1,
             "user_id":1,
             "question_id":2,
+            "title":"oh baby",
             "body": "baby i am lost",
             "date_created": 11/3/18,
             "date_modified":12/3/18,
@@ -233,8 +231,9 @@ class BaseTestCase(TestCase):
         self.accept_answer = {
             "status": "Accept"
         }
-        
+
     def tearDown(self):
+        
         self.postgresql.stop()
 
 if __name__ == '__main__':

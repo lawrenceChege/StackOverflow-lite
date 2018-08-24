@@ -45,9 +45,9 @@ class HelperDb(object):
                 self.cur.execute(
                     "UPDATE answers SET title=%(title)s, body=%(body)s, date_modified=%(date_modified)s", single_answer)
                 self.conn.commit()
-                return {"message":"Request updated successfully!"}, 200
+                return {"message":"Answer updated successfully!"}, 200
             else:
-                return {"message":"Request does not exist"}, 400
+                return {"message":"Answer does not exist"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
             return {"message": error}, 400
@@ -75,13 +75,14 @@ class HelperDb(object):
             self.cur.execute(
                 "SELECT * FROM answers WHERE question_id = %s", (question_id,))
             request_i = self.cur.fetchall()
+            answers = str(request_i)
             if len(request_i) > 0:
-                return {"answers":request_i}, 200
+                return {"answers": answers}, 200
             else:
-                return {"message":"Answers does not exitst!"},400
+                return {"message":"Answers do not exitst!"},400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": "bad connection"}, 400
+            return {"message": "bad database connection"}, 400
 
     def get_request(self, question_id, answer_id):
         """helper for retrieving an answer"""
