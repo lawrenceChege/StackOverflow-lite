@@ -35,11 +35,11 @@ class HelperDb(object):
             print(error)
             return {"message": error}, 400
 
-    def update_request(self, answer_id, single_answer):
+    def update_request(self, question_id, answer_id, single_answer):
         """elper for updating a answer"""
         try:
             self.cur.execute(
-                "SELECT * FROM answers WHERE answer_id = %s", (answer_id,))
+                "SELECT * FROM answers WHERE question_id = %s and answer_id = %s", (question_id, answer_id))
             answer_i = self.cur.fetchone()
             if answer_i:
                 self.cur.execute(
@@ -83,14 +83,15 @@ class HelperDb(object):
             print(error)
             return {"message": "bad connection"}, 400
 
-    def get_request(self, answer_id):
+    def get_request(self, question_id, answer_id):
         """helper for retrieving an answer"""
         try:
             self.cur.execute(
-                "SELECT * FROM answers WHERE answer_id = %s", (answer_id,))
+                "SELECT * FROM answers WHERE question_id = %s and answer_id = %s", (question_id, answer_id))
             single_answer = self.cur.fetchall()
+            output = str(single_answer)
             if len(single_answer) > 0:
-                return single_answer, 200
+                return {"single_answer": output}
             else:
                 return {"message":"Request does not exist!"},400
         except(Exception, psycopg2.DatabaseError) as error:

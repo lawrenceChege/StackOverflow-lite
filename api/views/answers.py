@@ -47,6 +47,7 @@ class Answers(Resource):
             "username": get_jwt_identity(),
         }
         return HelperDb().create_request(single_answer)
+
     def get(self,question_id):
         """get all answers to a question"""
         return HelperDb().get_answers(question_id)
@@ -54,14 +55,14 @@ class Answers(Resource):
 
 class Answer(Resource):
     """methods for single answers"""
-    def get(self, answer_id):
+    def get(self, question_id, answer_id):
         """"
         Gets an answer.
         
         """
-        return HelperDb().get_request(answer_id)
+        return HelperDb().get_request(question_id, answer_id)
 
-    def put(self,answer_id):
+    def put(self,question_id, answer_id):
         """
         Modifies an answer.
         ---
@@ -82,7 +83,7 @@ class Answer(Resource):
             "downvotes": 0,
             "status": "pending",
         }
-        return HelperDb().update_request(answer_id, single_answer)
+        return HelperDb().update_request(question_id, answer_id, single_answer)
 
     def delete(self, question_id, answer_id):
         """
