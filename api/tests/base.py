@@ -85,8 +85,24 @@ class BaseTestCase(TestCase):
             "title":"how are they doing?",
             "body": "fogort hammer"
         }
+        self.update_question_no_body ={
+            "title":"how are they doing?",
+            "body": ""
+        }
+        self.update_question_no_title ={
+            "title":"",
+            "body": "fogort hammer"
+        }
         self.update_answer = {
             "title":"how are they doing?",
+            "body": "fogort hammer"
+        }
+        self.update_answer_no_body = {
+            "title":"how are they doing?",
+            "body": ""
+        }
+        self.update_answer_no_title = {
+            "title":"",
             "body": "fogort hammer"
         }
         self.questions = [
@@ -225,6 +241,19 @@ class BaseTestCase(TestCase):
             "question_id":2,
             "title": "how are you doing?",
             "body": "",
+            "date_created": 11/3/18,
+            "date_modified":12/3/18,
+            "upvotes":3,
+            "downvotes":1,
+            "answers":0,
+            "status": "Pending"
+        }
+        self.answer_no_title = {
+            "answer_id": 3,
+            "user_id":1,
+            "question_id":2,
+            "title": "",
+            "body": "mama mhu fer",
             "date_created": 11/3/18,
             "date_modified":12/3/18,
             "upvotes":3,

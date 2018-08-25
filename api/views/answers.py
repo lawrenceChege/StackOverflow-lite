@@ -29,7 +29,7 @@ class Answers(Resource):
         Posts a new answer.
         """
         if 'title' in request.json and not request.json['title']:
-            return {"message": "Questions need a title"}, 400
+            return {"message": "Answers need a title"}, 400
         if 'body' in request.json and not request.json['body']:
             return {"message": "Body is required"}, 400
         body, title, question_id = (request.json['body'],
@@ -69,7 +69,7 @@ class Answer(Resource):
         
         """
         if 'title' in request.json and not request.json['title']:
-            return {"message": "Questions need a title"}, 400
+            return {"message": "Answer need a title"}, 400
         if 'body' in request.json and not request.json['body']:
             return {"message": "Body is required"}, 400
         title, body = (request.json['title'],
