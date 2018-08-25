@@ -13,7 +13,7 @@ before_install:
   - psql -c "ALTER USER postgres WITH PASSWORD '12345678';" -U postgres
 
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database stackoverflow;' -U postgres
 
 # command to install dependencies in the requirements file
 # You can also install the coverage here to avoid it being in the requirements file
