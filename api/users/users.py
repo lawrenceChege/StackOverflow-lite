@@ -3,7 +3,6 @@ import psycopg2
 from flask import jsonify, request, Blueprint
 from flask_restful import Resource, reqparse
 from werkzeug.security import generate_password_hash
-from api.resources.validators import check_blank, check_password, check_email
 from api.helpers.helper_users import HelperDb
 
 
