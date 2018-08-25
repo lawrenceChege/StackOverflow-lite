@@ -33,7 +33,7 @@ class HelperDb(object):
                 return {"message":"Question posted successfully!"}, 201
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def update_request(self, question_id, single_question):
         """elper for updating a question"""
@@ -50,7 +50,7 @@ class HelperDb(object):
                 return {"message":"Request does not exist"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def delete_request(self, question_id):
         """handles deleting the question from database"""
@@ -67,7 +67,7 @@ class HelperDb(object):
                 return {"message":"Request does not exitst!"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def get_request(self, question_id):
         """helper for retrieving one question"""
@@ -78,10 +78,10 @@ class HelperDb(object):
             if len(request_i) > 0:
                 return jsonify({"message":"Question successfully retrieved"},{"Question": request_i})
             else:
-                return {"message":"Request does not exitst!"},400
+                return {"message":"Request does not exitst!"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def get_all_questions(self):
         """helper for getting all questions"""
@@ -97,4 +97,4 @@ class HelperDb(object):
                 return {"message": " No questions found"}
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500

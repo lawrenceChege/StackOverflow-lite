@@ -25,17 +25,17 @@ class HelperDb(object):
             self.cur.execute("SELECT TRIM(email) FROM users WHERE email=%s",(email,))
             email_user = self.cur.fetchall()
             if len(user_username)!=0 and email_user is not None:
-                return {"message":"User already exists!"},400
+                return {"message":"User already exists!"}, 400
             else:
                 self.cur.execute(""" 
                                     INSERT INTO users (username, email, password, role) 
                                                     VALUES ((%(username)s), %(email)s, %(password)s, %(role)s)
                                 """, data)
                 self.conn.commit()
-                return {"message":"User created successfully!"},201
+                return {"message":"User created successfully!"}, 201
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message":"culd not see"},400
+            return {"message":"There was an error querrying the database"}, 500
 
     def login_user(self, password, username):
         """helper for confirming user using id"""
@@ -60,4 +60,4 @@ class HelperDb(object):
                 abort(401, "Wrong password!")
                 
         else:
-            return {"message" : "user not registered"},400
+            return {"message" : "user not registered"}, 400

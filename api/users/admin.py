@@ -8,7 +8,7 @@ from api.resources.validators import check_request, check_user
 
 
 
-conn= psycopg2.connect("dbname='maintenancedb' user='postgres' password='       ' host='localhost'")
+conn= psycopg2.connect("dbname='stackoverflow' user='postgres' password='12345678' host='localhost'")
 cur = conn.cursor()
 resource_fields = {
     'status': fields.String,

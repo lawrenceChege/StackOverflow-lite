@@ -33,7 +33,7 @@ class HelperDb(object):
                 return {"message":"answer posted successfully!"}, 201
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def update_request(self, question_id, answer_id, single_answer):
         """elper for updating a answer"""
@@ -50,7 +50,7 @@ class HelperDb(object):
                 return {"message":"Answer does not exist"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def delete_request(self, answer_id):
         """handles deleting the answer from database"""
@@ -67,7 +67,7 @@ class HelperDb(object):
                 return {"message":"Request does not exitst!"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def get_answers(self, question_id):
         """helper for retrieving  answers for one question"""
@@ -79,10 +79,10 @@ class HelperDb(object):
             if len(request_i) > 0:
                 return {"answers": answers}, 200
             else:
-                return {"message":"Answers do not exitst!"},400
+                return {"message":"Answers do not exitst!"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": "bad database connection"}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def get_request(self, question_id, answer_id):
         """helper for retrieving an answer"""
@@ -94,10 +94,10 @@ class HelperDb(object):
             if len(single_answer) > 0:
                 return {"single_answer": output}
             else:
-                return {"message":"Request does not exist!"},400
+                return {"message":"Request does not exist!"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def get_all_answers(self):
         """helper for getting all answers"""
@@ -113,4 +113,4 @@ class HelperDb(object):
                 return {"message": " No answers found"}
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
