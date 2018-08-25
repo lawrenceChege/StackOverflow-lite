@@ -74,9 +74,9 @@ script:
 # You can also use after_success
 after_script:
   - coveralls
-  - psql -c " DROP TABLE users" -U postgres
-  - psql -c " DROP TABLE questions" -U postgres
   - psql -c " DROP TABLE answers" -U postgres
+  - psql -c " DROP TABLE questions" -U postgres
+  - psql -c " DROP TABLE users" -U postgres
   - psql -c " DROP DATABASE stackoverflow" -U postgres
 # Using codecov to get coverage
 after_success:
