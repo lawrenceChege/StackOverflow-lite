@@ -41,7 +41,7 @@ before_script:
                                 downvotes INT NOT NULL,
                                 status CHAR(10) NOT NULL,
                                 username CHAR(50)REFERENCES users (username)
-        )" -U postgres
+        );" -U postgres
   
 
 # command to install dependencies in the requirements file
