@@ -5,6 +5,7 @@ from flask_jwt_extended import JWTManager
 from api.views.questions import QUESTIONS, Qusetion, Questions
 from api.views.answers import ANSWERS, Answer, Answers, Ans
 from api.users.users import USER, User, UserLogin, GetUserRequests
+from api.users.admin import Admin, Admin_get_all, Admin_get_user
 
 APP = Flask(__name__)
 API = Api(APP)
