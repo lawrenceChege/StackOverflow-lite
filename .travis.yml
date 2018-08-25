@@ -8,13 +8,22 @@ python:
 service:
   - postgresql
 
+# commands to create database and change credentials
 before_install:
   - psql -c "CREATE DATABASE stackoverflow;" -U postgres
   - psql -c "ALTER USER postgres WITH PASSWORD '12345678';" -U postgres
 
+# command to install dependencies in the requirements file
+# You can also install the coverage here to avoid it being in the requirements file
+# It is important to avoid things like coverage, pep8 that are not required to run the app
+install:
+  - pip install -r requirements.txt
+  - pip install coverage
+  - pip install codecov
+
+#command to connect to database and dcreate tables
 before_script:
   - psql -c "\c stackoverflow" -U postgres
-  - psql -c "\dt" -U postgres
   - psql -c 'CREATE TABLE IF NOT EXISTS users (user_id SERIAL PRIMARY KEY,
                             username CHAR(20) NOT NULL unique,
                             email VARCHAR(50) NOT NULL unique,
@@ -44,14 +53,9 @@ before_script:
                                 username CHAR(50)REFERENCES users (username)
         );" -U postgres
   
+  - psql -c "\dt" -U postgres
 
-# command to install dependencies in the requirements file
-# You can also install the coverage here to avoid it being in the requirements file
-# It is important to avoid things like coverage, pep8 that are not required to run the app
-install:
-  - pip install -r requirements.txt
-  - pip install coverage
-  - pip install codecov
+
 # command to run tests
 # This is the script that enables travis to run the tests
 # There are many ways to do dependeing on how you want travis to run and get you coverage
@@ -70,7 +74,9 @@ script:
 # You can also use after_success
 after_script:
   - coveralls
-
+  - psql -c " DROP TABLE users" -U postgres
+  - psql -c " DROP TABLE questions" -U postgres
+  - psql -c " DROP TABLE answers" -U postgres
 # Using codecov to get coverage
 after_success:
   - codecov
