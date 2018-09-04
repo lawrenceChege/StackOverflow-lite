@@ -1,12 +1,19 @@
 """Connect to database."""
 import psycopg2
+import os
+
+CONNECT_CREDS = {
+    "host": os.getenv('DB_HOST'),
+    "database": os.getenv('DB_NAME'),
+    "user": os.getenv('DB_USER'),
+    "password": os.getenv('DB_PASSWORD')
+}
 
 
 def connectTODB():
-    conn_string = "dbname='stackoverflow' user='postgres' password='12345678' host='localhost'"
     try:
         print("connecting to database ...")
-        return psycopg2.connect(conn_string)
+        return psycopg2.connect(**CONNECT_CREDS)
     except:
         print("Connection to database failed!")
 
