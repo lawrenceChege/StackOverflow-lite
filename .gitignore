@@ -3,13 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 .vscode
+.pytest_cache
 
 # C extensions
 *.so
 #to be removed
-api/helpers/
-api/models/
-api/users/
 
 # Distribution / packaging
 .Python
@@ -62,7 +60,6 @@ local_settings.py
 db.sqlite3
 
 # Flask stuff:
-instance/
 .webassets-cache
 
 # Scrapy stuff:
