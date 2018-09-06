@@ -3,7 +3,7 @@ import datetime
 from flask import Blueprint, jsonify, request
 from flask_restful import reqparse, Resource
 from api.helpers.helper_questions import HelperDb
-from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import get_jwt_identity, jwt_required
 
 
 QUESTIONS = Blueprint('questions', __name__,
@@ -23,6 +23,7 @@ POST_PARSER.add_argument(
 
 class Questions(Resource):
     """ methods for questions"""
+    @jwt_required
     def post(self):
         """
         Posts a new question.
@@ -59,7 +60,7 @@ class Qusetion(Resource):
         ---
         """
         return HelperDb().get_request(question_id)
-
+    @jwt_required
     def put(self, question_id):
         """
         Modifies a question.
@@ -77,7 +78,7 @@ class Qusetion(Resource):
             "date_modified": str(datetime.datetime.now()),
         }
         return HelperDb().update_request(question_id, single_question)
-
+    @jwt_required
     def delete(self, question_id):
         """
         deletes a question.

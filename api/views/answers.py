@@ -2,7 +2,7 @@
 import datetime
 from flask import Blueprint, jsonify, request
 from flask_restful import reqparse, Resource
-from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import get_jwt_identity, jwt_required
 from api.helpers.helper_answers import HelperDb
 
 
@@ -24,6 +24,7 @@ class Ans(Resource):
 
 class Answers(Resource):
     """ methods for answers"""
+    @jwt_required
     def post(self, question_id):
         """
         Posts a new answer.
@@ -61,7 +62,7 @@ class Answer(Resource):
         
         """
         return HelperDb().get_request(question_id, answer_id)
-
+    @jwt_required
     def put(self,question_id, answer_id):
         """
         Modifies an answer.
@@ -84,7 +85,7 @@ class Answer(Resource):
             "status": "pending",
         }
         return HelperDb().update_request(question_id, answer_id, single_answer)
-
+    @jwt_required
     def delete(self, question_id, answer_id):
         """
         delete an answer.
