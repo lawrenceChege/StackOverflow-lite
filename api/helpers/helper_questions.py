@@ -1,16 +1,24 @@
 import psycopg2
+import os
 import json
 import unicodedata
 from flask import request, abort, jsonify
 from psycopg2.extras import RealDictCursor
 
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+def connectTODB():
+    try:
+        print("connecting to database ...")
+        return psycopg2.connect(DATABASE_URL)
+    except:
+        print("Connection to database failed!")
 
 class HelperDb(object):
     """ Helper methods for connecting to db"""
     def __init__(self):
         """initialize db"""
-        self.conn = psycopg2.connect(
-            "dbname='stackoverflow' user='postgres' password='12345678' host='localhost'")
+        self.conn = connectTODB()
         self.cur = self.conn.cursor(cursor_factory=RealDictCursor)
         self.cur2 = self.conn.cursor()
     
@@ -33,7 +41,7 @@ class HelperDb(object):
                 return {"message":"Question posted successfully!"}, 201
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def update_request(self, question_id, single_question):
         """elper for updating a question"""
@@ -50,7 +58,7 @@ class HelperDb(object):
                 return {"message":"Request does not exist"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def delete_request(self, question_id):
         """handles deleting the question from database"""
@@ -67,7 +75,7 @@ class HelperDb(object):
                 return {"message":"Request does not exitst!"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def get_request(self, question_id):
         """helper for retrieving one question"""
@@ -78,10 +86,10 @@ class HelperDb(object):
             if len(request_i) > 0:
                 return jsonify({"message":"Question successfully retrieved"},{"Question": request_i})
             else:
-                return {"message":"Request does not exitst!"},400
+                return {"message":"Request does not exitst!"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def get_all_questions(self):
         """helper for getting all questions"""
@@ -97,4 +105,4 @@ class HelperDb(object):
                 return {"message": " No questions found"}
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500

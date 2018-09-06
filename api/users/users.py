@@ -1,19 +1,25 @@
 """this holds the methods for the users"""
 import psycopg2
+import os
 from flask import jsonify, request, Blueprint
 from flask_restful import Resource, reqparse
 from werkzeug.security import generate_password_hash
-from api.resources.validators import check_blank, check_password, check_email
 from api.helpers.helper_users import HelperDb
-
 
 USER = Blueprint("user", __name__, 
                 url_prefix="api/v2/auth/")
-conn = psycopg2.connect(
-    "dbname='stackoverflow' user='postgres' password='12345678' host='localhost'")
 
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+def connectTODB():
+    try:
+        print("connecting to database ...")
+        return psycopg2.connect(DATABASE_URL)
+    except:
+        print("Connection to database failed!")
+
+conn = connectTODB()
 cur = conn.cursor()
-
 
 class User(Resource):
     """This class will define methods for the user"""

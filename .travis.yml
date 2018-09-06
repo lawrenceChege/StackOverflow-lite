@@ -8,12 +8,10 @@ python:
 service:
   - postgresql
 
+# commands to create database and change credentials
 before_install:
   - psql -c "CREATE DATABASE stackoverflow;" -U postgres
   - psql -c "ALTER USER postgres WITH PASSWORD '12345678';" -U postgres
-
-before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
 
 # command to install dependencies in the requirements file
 # You can also install the coverage here to avoid it being in the requirements file
@@ -22,6 +20,42 @@ install:
   - pip install -r requirements.txt
   - pip install coverage
   - pip install codecov
+
+#command to connect to database and dcreate tables
+before_script:
+  - psql -c "\c stackoverflow" -U postgres
+  - psql -c 'CREATE TABLE IF NOT EXISTS users (user_id SERIAL PRIMARY KEY,
+                            username CHAR(20) NOT NULL unique,
+                            email VARCHAR(50) NOT NULL unique,
+                            password VARCHAR(100) NOT NULL,
+                            role CHAR(20) DEFAULT user
+                            ); ' -U postgres
+
+  - psql -c "CREATE TABLE IF NOT EXISTS questions(question_id SERIAL PRIMARY KEY,
+                                title CHAR(50) NOT NULL,
+                                body VARCHAR(100) NOT NULL,
+                                date_created DATE NOT NULL DEFAULT CURRENT_DATE,
+                                date_modified DATE NOT NULL DEFAULT CURRENT_DATE,
+                                upvotes INT NOT NULL DEFAULT 0,
+                                downvotes INT NOT NULL DEFAULT 0,
+                                answers INT NOT NULL DEFAULT 0,
+                                username CHAR(50)REFERENCES users (username)
+        );" -U postgres
+  - psql -c "CREATE TABLE IF NOT EXISTS answers(answer_id SERIAL PRIMARY KEY,
+                                question_id INT REFERENCES questions(question_id),
+                                body VARCHAR(100) NOT NULL,
+                                title VARCHAR(100) NOT NULL,
+                                date_created DATE NOT NULL DEFAULT CURRENT_DATE,
+                                date_modified DATE NOT NULL DEFAULT CURRENT_DATE,
+                                upvotes INT NOT NULL,
+                                downvotes INT NOT NULL,
+                                status CHAR(10) NOT NULL,
+                                username CHAR(50)REFERENCES users (username)
+        );" -U postgres
+  
+  - psql -c "\dt" -U postgres
+
+
 # command to run tests
 # This is the script that enables travis to run the tests
 # There are many ways to do dependeing on how you want travis to run and get you coverage
@@ -40,7 +74,10 @@ script:
 # You can also use after_success
 after_script:
   - coveralls
-
+  - psql -c " DROP TABLE answers" -U postgres
+  - psql -c " DROP TABLE questions" -U postgres
+  - psql -c " DROP TABLE users" -U postgres
+  - psql -c " DROP DATABASE stackoverflow" -U postgres
 # Using codecov to get coverage
 after_success:
   - codecov

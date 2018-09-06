@@ -1,16 +1,24 @@
 import psycopg2
+import os
 import json
 import unicodedata
 from flask import request, abort, jsonify
 from psycopg2.extras import RealDictCursor
 
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+def connectTODB():
+    try:
+        print("connecting to database ...")
+        return psycopg2.connect(DATABASE_URL)
+    except:
+        print("Connection to database failed!")
 
 class HelperDb(object):
     """ Helper methods for connecting to db"""
     def __init__(self):
         """initialize db"""
-        self.conn = psycopg2.connect(
-            "dbname='stackoverflow' user='postgres' password='12345678' host='localhost'")
+        self.conn = connectTODB()
         self.cur = self.conn.cursor(cursor_factory=RealDictCursor)
         self.cur2 = self.conn.cursor()
     
@@ -33,7 +41,7 @@ class HelperDb(object):
                 return {"message":"answer posted successfully!"}, 201
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def update_request(self, question_id, answer_id, single_answer):
         """elper for updating a answer"""
@@ -45,12 +53,12 @@ class HelperDb(object):
                 self.cur.execute(
                     "UPDATE answers SET title=%(title)s, body=%(body)s, date_modified=%(date_modified)s", single_answer)
                 self.conn.commit()
-                return {"message":"Request updated successfully!"}, 200
+                return {"message":"Answer updated successfully!"}, 200
             else:
-                return {"message":"Request does not exist"}, 400
+                return {"message":"Answer does not exist"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def delete_request(self, answer_id):
         """handles deleting the answer from database"""
@@ -67,7 +75,7 @@ class HelperDb(object):
                 return {"message":"Request does not exitst!"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def get_answers(self, question_id):
         """helper for retrieving  answers for one question"""
@@ -75,13 +83,14 @@ class HelperDb(object):
             self.cur.execute(
                 "SELECT * FROM answers WHERE question_id = %s", (question_id,))
             request_i = self.cur.fetchall()
+            answers = str(request_i)
             if len(request_i) > 0:
-                return {"answers":request_i}, 200
+                return {"answers": answers}, 200
             else:
-                return {"message":"Answers does not exitst!"},400
+                return {"message":"Answers do not exitst!"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": "bad connection"}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def get_request(self, question_id, answer_id):
         """helper for retrieving an answer"""
@@ -93,10 +102,10 @@ class HelperDb(object):
             if len(single_answer) > 0:
                 return {"single_answer": output}
             else:
-                return {"message":"Request does not exist!"},400
+                return {"message":"Request does not exist!"}, 400
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
 
     def get_all_answers(self):
         """helper for getting all answers"""
@@ -112,4 +121,4 @@ class HelperDb(object):
                 return {"message": " No answers found"}
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            return {"message": error}, 400
+            return {"message":"There was an error querrying the database"}, 500
