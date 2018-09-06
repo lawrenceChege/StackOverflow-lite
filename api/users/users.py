@@ -81,7 +81,7 @@ class GetUserRequests(Resource):
     """"""
     def get(self, user_id):
         """
-        Registers a new user.
+        gets a users requests.
         ---
         """
         try:
