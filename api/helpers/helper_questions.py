@@ -3,7 +3,24 @@ import json
 import unicodedata
 from flask import request, abort, jsonify
 from psycopg2.extras import RealDictCursor
-from api.app import CONNECT_CREDS, DATABASE_URL, connectTODB
+
+CONNECT_CREDS = {
+    "host": os.getenv('DB_HOST'),
+    "database": os.getenv('DB_NAME'),
+    "user": os.getenv('DB_USER'),
+    "password": os.getenv('DB_PASSWORD')
+}
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+def connectTODB():
+    try:
+        print("connecting to database ...")
+        try:
+            return psycopg2.connect(DATABASE_URL)
+        except:
+            return psycopg2.connect(**CONNECT_CREDS)
+    except:
+        print("Connection to database failed!")
 
 class HelperDb(object):
     """ Helper methods for connecting to db"""

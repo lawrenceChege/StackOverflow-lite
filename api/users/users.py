@@ -4,12 +4,28 @@ from flask import jsonify, request, Blueprint
 from flask_restful import Resource, reqparse
 from werkzeug.security import generate_password_hash
 from api.helpers.helper_users import HelperDb
-from api.app import CONNECT_CREDS, DATABASE_URL, connectTODB
-
 
 
 USER = Blueprint("user", __name__, 
                 url_prefix="api/v2/auth/")
+
+CONNECT_CREDS = {
+    "host": os.getenv('DB_HOST'),
+    "database": os.getenv('DB_NAME'),
+    "user": os.getenv('DB_USER'),
+    "password": os.getenv('DB_PASSWORD')
+}
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+def connectTODB():
+    try:
+        print("connecting to database ...")
+        try:
+            return psycopg2.connect(DATABASE_URL)
+        except:
+            return psycopg2.connect(**CONNECT_CREDS)
+    except:
+        print("Connection to database failed!")
 
 conn = connectTODB()
 cur = conn.cursor()
