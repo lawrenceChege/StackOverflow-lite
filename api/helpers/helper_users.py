@@ -5,15 +5,13 @@ from flask import request, abort
 from psycopg2.extras import RealDictCursor
 from flask_jwt_extended import create_access_token
 from werkzeug.security import check_password_hash
-
+from api.app import CONNECT_CREDS, DATABASE_URL, connectTODB
 
 class HelperDb(object):
     """ Helper methods for connecting to db"""
-
     def __init__(self):
         """initialize db"""
-        self.conn = psycopg2.connect(
-            "dbname='stackoverflow' user='postgres' password='12345678' host='localhost'")
+        self.conn = connectTODB()
         self.cur = self.conn.cursor(cursor_factory=RealDictCursor)
         self.cur2 = self.conn.cursor()
 

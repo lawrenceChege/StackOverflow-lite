@@ -6,6 +6,24 @@ from api.views.questions import QUESTIONS, Qusetion, Questions
 from api.views.answers import ANSWERS, Answer, Answers, Ans
 from api.users.users import USER, User, UserLogin, GetUserRequests
 
+CONNECT_CREDS = {
+    "host": os.getenv('DB_HOST'),
+    "database": os.getenv('DB_NAME'),
+    "user": os.getenv('DB_USER'),
+    "password": os.getenv('DB_PASSWORD')
+}
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+def connectTODB():
+    try:
+        print("connecting to database ...")
+        try:
+            return psycopg2.connect(DATABASE_URL)
+        except:
+            return psycopg2.connect(**CONNECT_CREDS)
+    except:
+        print("Connection to database failed!")
+
 APP = Flask(__name__)
 API = Api(APP)
 jwt = JWTManager(APP)
