@@ -2,6 +2,7 @@ import psycopg2
 import os
 import json
 import unicodedata
+from datetime import timedelta
 from flask import request, abort
 from psycopg2.extras import RealDictCursor
 from flask_jwt_extended import create_access_token
@@ -60,7 +61,8 @@ class HelperDb(object):
             pssword = self.cur2.fetchone()
             pasword = pssword[0]
             if check_password_hash(pasword, password):
-                access_token = create_access_token(identity=logged_in_user)
+                timeout = timedelta(minutes=300)
+                access_token = create_access_token(identity=logged_in_user, expires_delta=timeout)
                 token = access_token
                 return {"message" : "User successfully logged in","token": token}
             else:

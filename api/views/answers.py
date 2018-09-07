@@ -7,7 +7,7 @@ from api.helpers.helper_answers import HelperDb
 
 
 ANSWERS = Blueprint('answers', __name__,
-                    url_prefix='/api/v1/answers/')
+                    url_prefix='/api/v1/questions/answers/')
 
 POST_PARSER = reqparse.RequestParser()
 POST_PARSER.add_argument(
