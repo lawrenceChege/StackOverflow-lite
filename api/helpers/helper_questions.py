@@ -11,6 +11,7 @@ def connectTODB():
     try:
         print("connecting to database ...")
         return psycopg2.connect(DATABASE_URL)
+        print("conneced to database")
     except:
         print("Connection to database failed!")
 

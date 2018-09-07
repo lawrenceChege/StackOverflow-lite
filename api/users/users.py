@@ -9,18 +9,6 @@ from api.helpers.helper_users import HelperDb
 USER = Blueprint("user", __name__, 
                 url_prefix="api/v2/auth/")
 
-DATABASE_URL = os.getenv('DATABASE_URL')
-
-def connectTODB():
-    try:
-        print("connecting to database ...")
-        return psycopg2.connect(DATABASE_URL)
-    except:
-        print("Connection to database failed!")
-
-conn = connectTODB()
-cur = conn.cursor()
-
 class User(Resource):
     """This class will define methods for the user"""
     def post(self):
@@ -84,12 +72,4 @@ class GetUserRequests(Resource):
         gets a users requests.
         ---
         """
-        try:
-            cur.execute("""SELECT * FROM requests WHERE user_id = user_id""")
-            result = cur.fetchall()
-            if user_id in result:
-                return jsonify(result)
-            else:
-                return {"message":"User not found!"}
-        except:
-            return {"message":"I could not  select from users"}
+        return HelperDb().get_user_Requests(user_id)

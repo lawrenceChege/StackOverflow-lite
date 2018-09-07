@@ -68,3 +68,14 @@ class HelperDb(object):
                 
         else:
             return {"message" : "user not registered"}, 400
+
+    def get_user_Requests(self, user_id):
+        try:
+            self.cur.execute("""SELECT * FROM requests WHERE user_id = user_id""")
+            result = self.cur.fetchall()
+            if user_id in result:
+                return result
+            else:
+                return {"message":"User not found!"}
+        except:
+            return {"message":"I could not  select from users"}
