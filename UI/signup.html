@@ -9,37 +9,35 @@
     <title>Stack Overflow lite</title>
     <script src="UI/js/main.js"></script>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
 </head>
 
 <body>
     <img src="images/Rock-13.png" alt="teach me" class="index-image">
-    <form action="Home.html">
+    <form action=""  method="POST">
         <div class="signup-box">
             <h1>Sign up here</h1>
             <div class="input-box">
-                <p>Firstname</p>
-                <input type="text" placeholder="Enter your firstname ..." name="firstname" required>
-            </div>
-            <div class="input-box">
-                <p>Lastname</p>
-                <input type="text" placeholder="Enter your lastname ..." name="lastname" required>
+                <p>Username</p>
+                <input id="username" type="text" placeholder="Enter your usertname ..." name="lastname" required>
             </div>
             <div class="input-box">
                 <p>email</p>
-                <input type="email" placeholder="Enter email ..." name="email" required>
+                <input id="email" type="email" placeholder="Enter email ..." name="email" required>
             </div>
             <div class="input-box">
                 <p>Password</p>
-                <input type="password" placeholder="Enter password ..." name="password" required>
+                <input id="password" type="password" placeholder="Enter password ..." name="password" required>
             </div>
-            <input type="submit" class=" button button-signup" value="Sign up">
+            <button type="submit" onclick="registerUser()"  class=" button button-signup"><span>Sign up</span></a> </button>
             <p> Already registered?
                 <a href="login.html">login</a>
             </p>
         </div>
     </form>
+    <script type="text/javascript" src="js/signup.js"></script>
 </body>
 
 </html>

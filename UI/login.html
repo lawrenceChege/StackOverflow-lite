@@ -8,27 +8,29 @@
     <title>Stack Overflow lite</title>
     <script src="UI/js/main.js"></script>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
 <body>
     <img src="images/Rock-12.png" alt="teach me o lord" class="index-image">
-    <form action="Home.html">
+    <form action="" method="POST">
         <div class="signup-box">
             <h1>Log in here</h1>
             <div class="input-box">
                 <p>Username</p>
-                <input type="text" placeholder="Enter username ..." name="username" required>
+                <input id="username" type="text" placeholder="Enter username ..." name="username" required>
             </div>
             <div class="input-box">
                 <p>Password</p>
-                <input type="password" placeholder="Enter password ..." name="password" required>
+                <input id="password" type="password" placeholder="Enter password ..." name="password" required>
             </div>
-            <input type="submit" class="button button-login" value="Sign in">
+            <button type="submit" onclick="loginUser()" class="button button-signup"><span>Sign in</span></a> </button>
             <p>Not registerd?
                 <a href="signup.html">sign up</a>
             </p>
         </div>
     </form>
+    <script type="text/javascript" src="js/login.js"></script>
 
 </body>
 </html>

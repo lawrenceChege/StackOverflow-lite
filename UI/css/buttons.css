@@ -36,3 +36,15 @@
     opacity: 1;
     right: 0;
   }
+  .button-login {
+    background-color:rgb(2, 97, 2);
+}
+.button-signup {
+    background-color:rgb(4, 87, 4);
+}
+.button-login a{
+    color: #FFFFFF;
+}
+.button-signup a{
+    color: #FFFFFF;
+}

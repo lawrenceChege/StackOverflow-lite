@@ -1,0 +1,21 @@
+
+.container{
+    display: grid;
+    position: relative;
+    margin:0 auto;
+    background-size: auto;
+}
+.overlay {
+    padding-top: 50px;
+}
+.overlay>h1 {
+    font: 5em sans-serif;
+}
+.overlay>p{
+    font:  3em sans-serif;
+}
+.center {
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+}
