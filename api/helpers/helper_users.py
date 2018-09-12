@@ -32,8 +32,10 @@ class HelperDb(object):
             user_username = self.cur.fetchall()
             self.cur.execute("SELECT TRIM(email) FROM users WHERE email=%s",(email,))
             email_user = self.cur.fetchall()
-            if len(user_username)!=0 and email_user is not None:
-                return {"message":"User already exists!"}, 400
+            if len(user_username)!=0:
+                return {"message":"Username already exists!"}, 400
+            elif len(email_user)!=0:
+                return {"message":" Email already exists!"}, 400
             else:
                 self.cur.execute(""" 
                                     INSERT INTO users (username, email, password, role) 
@@ -64,9 +66,10 @@ class HelperDb(object):
                 timeout = timedelta(minutes=300)
                 access_token = create_access_token(identity=logged_in_user, expires_delta=timeout)
                 token = access_token
-                return {"message" : "User successfully logged in","token": token}
+                print ({"user logged in": logged_in_user})
+                return {"message" : "User successfully logged in", "token": token, "username":logged_in_user }
             else:
-                abort(401, "Wrong password!")
+                abort(401, "Wrong credentials!")
                 
         else:
             return {"message" : "user not registered"}, 400

@@ -1,6 +1,7 @@
 """ initializes the app , holds blue prints and routes"""
 from flask import Flask
 from flask_restful import Api
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from api.views.questions import QUESTIONS, Qusetion, Questions
 from api.views.answers import ANSWERS, Answer, Answers, Ans
@@ -8,6 +9,7 @@ from api.users.users import USER, User, UserLogin, GetUserRequests
 
 APP = Flask(__name__)
 API = Api(APP)
+CORS(APP)
 jwt = JWTManager(APP)
 APP.config['JWT_SECRET_KEY'] = 'raiseSONDecodeErrorExpectingromNone' 
 APP.register_blueprint(QUESTIONS)
