@@ -10,7 +10,12 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 def connectTODB():
     try:
         print("connecting to database ...")
-        return psycopg2.connect(DATABASE_URL)
+        try:
+            return psycopg2.connect(DATABASE_URL)
+            print("connected to the database")
+        except:
+            return psycopg2.connect('postgresql://localhost/stackoverflow?user=postgres&password=3162')
+            print("connected to the database")
     except:
         print("Connection to database failed!")
 

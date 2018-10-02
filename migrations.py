@@ -2,21 +2,23 @@
 import psycopg2
 import os
 
-CONNECT_CREDS = {
-    "host": os.getenv('DB_HOST'),
-    "database": os.getenv('DB_NAME'),
-    "user": os.getenv('DB_USER'),
-    "password": os.getenv('DB_PASSWORD')
-}
+# CONNECT_CREDS = {
+#     "host": os.getenv('DB_HOST'),
+#     "database": os.getenv('DB_NAME'),
+#     "user": os.getenv('DB_USER'),
+#     "password": os.getenv('DB_PASSWORD')
+# }
 DATABASE_URL = os.getenv('DATABASE_URL')
 
 def connectTODB():
     try:
         print("connecting to database ...")
         try:
-            return psycopg2.connect(**CONNECT_CREDS)
-        except:
             return psycopg2.connect(DATABASE_URL)
+            print("connected to the database")
+        except:
+            return psycopg2.connect('postgresql://localhost/stackoverflow?user=postgres&password=3162')
+            print("connected to the database")
     except:
         print("Connection to database failed!")
 
