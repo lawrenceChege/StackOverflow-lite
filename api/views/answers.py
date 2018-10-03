@@ -33,9 +33,8 @@ class Answers(Resource):
             return {"message": "Answers need a title"}, 400
         if 'body' in request.json and not request.json['body']:
             return {"message": "Body is required"}, 400
-        body, title, question_id = (request.json['body'],
-                                    request.json['title'],
-                                    request.json['question_id'])
+        body, title= (request.json['body'],
+                                    request.json['title'])
         single_answer = {
             "question_id": question_id,
             "body": body,
